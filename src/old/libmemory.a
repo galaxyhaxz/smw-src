@@ -1,0 +1,32 @@
+; libmemory_MoveBlock
+;
+; Function: moves a block of data from source into destination.
+; Usage:
+;   arg1 - Source data address.
+;   arg2 - Destination data address.
+;   arg3 - Size of source data.
+;   arg4 - Boolean; [1] for negative block move, [0] for positive.
+;   arg5 - Boolean; [1] to set 16 bit mode, [0] to keep current mode.
+
+MACRO libmemory_MoveBlock(arg1, arg2, arg3, arg4, arg5)
+	IF <arg5> == 1
+		REP #$30
+	ENDIF
+
+	PHB
+	LDA #<arg3>
+	LDX.w #<arg1>
+	LDY.w #<arg2>
+
+	IF <arg4> == 1
+		MVN <arg2>>>16,<arg1>>>16
+	ELSE
+		MVP <arg2>>>16,<arg1>>>16
+	ENDIF
+
+	PLB
+
+	IF <arg5> == 1
+		SEP #$30
+	ENDIF
+ENDMACRO

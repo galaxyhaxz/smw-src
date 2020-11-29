@@ -1,0 +1,253 @@
+.BANK 0 SLOT 1
+.ORG 0
+
+.SECTION "SFX" SEMIFREE
+
+	BASE_START $5570
+
+SFXInstrumentTable:
+	.DB $70, $70, $00, $10, $06, $DF, $E0, $B8, $02
+	.DB $70, $70, $00, $10, $00, $FE, $0A, $B8, $03
+	.DB $70, $70, $00, $10, $03, $FE, $11, $B8, $03
+	.DB $70, $70, $00, $10, $04, $FE, $6A, $B8, $03
+	.DB $70, $70, $00, $10, $00, $FE, $11, $B8, $03
+	.DB $70, $70, $00, $10, $08, $FE, $6A, $B8, $03
+	.DB $70, $70, $00, $10, $02, $FE, $6A, $B8, $06
+	.DB $70, $70, $00, $10, $06, $FE, $6A, $B8, $05
+	.DB $70, $70, $00, $10, $00, $CA, $D7, $B8, $03
+	.DB $70, $70, $00, $10, $10, $0E, $6A, $7F, $04
+	.DB $70, $70, $00, $10, $0B, $FE, $6A, $B8, $02
+	.DB $70, $70, $00, $10, $0B, $FF, $E0, $B8, $05
+	.DB $70, $70, $00, $10, $0E, $FE, $00, $7F, $06
+	.DB $70, $70, $00, $10, $00, $B6, $30, $30, $06
+	.DB $70, $70, $00, $10, $12, $0E, $6A, $70, $03
+	.DB $70, $70, $00, $10, $01, $FA, $6A, $70, $03
+	.DB $70, $70, $00, $10, $02, $FE, $16, $70, $03
+	.DB $70, $70, $00, $10, $13, $0E, $16, $7F, $03
+	.DB $70, $70, $00, $10, $02, $FE, $33, $7F, $03
+
+;1DFC
+SFXTable0:
+	.DW SOUND_Coin
+	.DW SOUND_HitPrizeBlock
+	.DW SOUND_HitVineBlock
+	.DW SOUND_SpinJump
+	.DW SOUND_1Up
+	.DW SOUND_ShootFireball
+	.DW SOUND_Shatter
+	.DW SOUND_SpringBoard
+	.DW SOUND_BulletBill
+	.DW SOUND_EggHatch
+	.DW SOUND_ItemIntoReserve
+	.DW SOUND_ItemFromReserve
+	.DW SOUND_ItemFromReserve ;Clone 0C
+	.DW SOUND_ScrollScreen
+	.DW SOUND_Door
+	.DW SOUND_BulletBill ;Clone 09
+	.DW SOUND_DrumRoll
+	.DW SOUND_DrumRollEnd
+	.DW SOUND_LoseYoshi
+	.DW SOUND_UnusedCape
+	.DW SOUND_OWTileAppears
+	.DW SOUND_OWCastleCollapse
+	.DW SOUND_FireSpit
+	.DW SOUND_Thunder
+	.DW SOUND_ClapPop
+	.DW SOUND_CastleBomb
+	.DW SOUND_CastleFuse
+	.DW SOUND_SwitchPalaceEject
+	.DW SOUND_TimeRunningLow2
+	.DW SOUND_Whistle
+	.DW SOUND_Yoshi
+	.DW SOUND_KoopalingHitsLava
+	.DW SOUND_YoshiTongue
+	.DW SOUND_MessageBox
+	.DW SOUND_MoveOnOW
+	.DW SOUND_PSwitchTimeLow
+	.DW SOUND_YoshiEnemyStomp
+	.DW SOUND_Swooper
+	.DW SOUND_Podoboo
+	.DW SOUND_EnemyStunned
+	.DW SOUND_Correct
+	.DW SOUND_Incorrect
+	.DW SOUND_FireworkWhistle
+	.DW SOUND_FireworkBang
+	.DW SOUND_PodobooMinus100
+	.DW SOUND_PodobooMinus71
+	.DW SOUND_PodobooMinus43
+	.DW SOUND_PodobooMinus14
+	.DW SOUND_PodobooPlus14
+	.DW SOUND_PodobooPlus43
+	.DW SOUND_PodobooPlus71
+	.DW SOUND_PodobooPlus100
+
+;1DF9
+SFXTable1:
+	.DW SOUND_HitHead
+	.DW SOUND_Contact
+	.DW SOUND_KickShell
+	.DW SOUND_PipeHurt
+	.DW SOUND_MidwayPoint
+	.DW SOUND_YoshiGulp
+	.DW SOUND_DryBonesCollapse
+	.DW SOUND_SpinJumpKill
+	.DW SOUND_FlyWithCape
+	.DW SOUND_GetPowerup
+	.DW SOUND_OnOffSwitch
+	.DW SOUND_ItemPastGoal
+	.DW SOUND_GetCape
+	.DW SOUND_Swim
+	.DW SOUND_HurtWhileFlying
+	.DW SOUND_MagikoopaMagic
+	.DW SOUND_Pause
+	.DW SOUND_Pause
+	.DW SOUND_EnemyStomp1
+	.DW SOUND_EnemyStomp2
+	.DW SOUND_EnemyStomp3
+	.DW SOUND_EnemyStomp4
+	.DW SOUND_EnemyStomp5
+	.DW SOUND_EnemyStomp6
+	.DW SOUND_EnemyStomp7
+	.DW SOUND_GrinderClick1
+	.DW SOUND_GrinderClick2
+	.DW SOUND_YoshiCoin
+	.DW SOUND_TimeRunningLow1
+	.DW SOUND_PBalloon
+	.DW SOUND_KoopalingDefeated
+	.DW SOUND_YoshiSpit
+	.DW SOUND_ValleyofBowserAppears
+	.DW SOUND_Pause-1 ; $5B26, plays when Valley of Bowser appears [SFX Removed]
+	.DW SOUND_LemmyWendyFall
+	.DW SOUND_Pause-1 ; $5B26, used in unused Chargin' Chuck code [SFX Removed]
+	.DW SOUND_BlarggRoar
+	.DW SOUND_FireworkWhistle1
+	.DW SOUND_FireworkBang1
+	.DW SOUND_FireworkWhistle2
+	.DW SOUND_FireworkBang2
+	.DW SOUND_PeachPopsUp
+
+SOUND_PeachPopsUp:				.DB $DA,$12,$0C,$3C,$A4,$A7,$AA,$AD,$B0,$30,$B3,$00
+SOUND_PodobooMinus100:			.DB $DA,$92,$0D,$12,$50,$00,$A4,$00
+SOUND_PodobooMinus71:			.DB $DA,$92,$0D,$12,$46,$0A,$A4,$00
+SOUND_PodobooMinus43:			.DB $DA,$92,$0D,$12,$3C,$14,$A4,$00
+SOUND_PodobooMinus14:			.DB $DA,$92,$0D,$12,$32,$1E,$A4,$00
+SOUND_PodobooPlus14:			.DB $DA,$92,$0D,$12,$1E,$32,$A4,$00
+SOUND_PodobooPlus43:			.DB $DA,$92,$0D,$12,$14,$3C,$A4,$00
+SOUND_PodobooPlus71:			.DB $DA,$92,$0D,$12,$0A,$46,$A4,$00
+SOUND_PodobooPlus100:			.DB $DA,$92,$0D,$12,$00,$50,$A4,$00
+SOUND_FireworkBang2:			.DB $DA,$0A,$0C,$46,$46,$9C,$24,$0E,$08,$9C,$DA,$11,$24,$00,$00,$A4,$06,$08,$08,$A1,$12,$0C,$0C,$9F,$06,$0E,$10,$9C,$0C,$14,$15,$9B,$06,$18,$17,$99,$12,$0C,$11,$97,$12,$0B,$08,$93,$0C,$04,$02,$92,$00
+SOUND_FireworkWhistle2:			.DB $DA,$0D,$30,$0F,$DD,$BE,$00,$30,$BC,$1B,$0B,$EB,$00,$18,$BB,$00
+SOUND_FireworkBang:				.DB $DA,$0A,$0C,$00,$72,$9C,$24,$0E,$08,$9C,$DA,$11,$24,$00,$00,$A4,$06,$00,$0C,$A1,$12,$02,$10,$9F,$06,$04,$16,$9C,$0C,$00,$1A,$9B,$06,$04,$21,$99,$12,$02,$14,$97,$12,$01,$12,$93,$0C,$04,$02,$92,$00
+SOUND_FireworkWhistle:			.DB $DA,$0D,$30,$00,$14,$DD,$BE,$00,$30,$BC,$1B,$00,$11,$EB,$00,$18,$BB,$00
+SOUND_FireworkBang1:			.DB $DA,$0A,$0C,$72,$00,$9A,$24,$08,$0E,$9A,$DA,$11,$24,$00,$00,$A4,$06,$0C,$00,$A1,$12,$10,$02,$9F,$06,$16,$04,$9C,$0C,$1A,$00,$9B,$06,$21,$04,$99,$12,$14,$02,$97,$12,$12,$01,$93,$0C,$04,$02,$92,$00
+SOUND_FireworkWhistle1:			.DB $DA,$0D,$30,$14,$00,$DD,$BE,$00,$30,$BC,$1B,$11,$00,$EB,$00,$18,$BB,$00
+SOUND_Incorrect:				.DB $DA,$05,$06,$54,$93,$18,$93,$00
+SOUND_Correct:					.DB $DA,$12,$08,$3C,$B4,$24,$B0,$00
+SOUND_LemmyWendyFall:			.DB $DA,$0D,$27,$28,$DD,$BC,$00,$24,$9F,$00
+SOUND_EnemyStunned:				.DB $DA,$05,$08,$54,$DD,$98,$00,$08,$90,$08,$EB,$00,$08,$A8,$15,$EB,$00,$12,$95,$00
+SOUND_BlarggRoar:				.DB $DA,$11,$04,$28,$92,$04,$32,$95,$04,$3C,$98,$04,$46,$9B,$04,$50,$9E,$04,$4A,$9D,$04,$46,$9C,$04,$41,$9B,$04,$3C,$9A,$04,$37,$99,$04,$32,$98,$04,$2D,$97,$04,$28,$96,$04,$23,$95,$04,$1E,$94,$04,$19,$93,$04,$14,$92,$04,$0F,$91,$00
+SOUND_Podoboo:					.DB $DA,$92,$0D,$0E,$1E,$A4,$00
+SOUND_Swooper:					.DB $DA,$98,$0F,$03,$32,$BC,$03,$00,$BC,$03,$50,$BC,$03,$00,$BC,$03,$3C,$BC,$03,$00,$BC,$03,$28,$BC,$03,$00,$BC,$03,$1E,$BC,$03,$00,$BC,$03,$14,$BC,$00
+SOUND_YoshiEnemyStomp:			.DB $DA,$0A,$0F,$54,$DD,$A4,$00,$0C,$9F,$00
+SOUND_PSwitchTimeLow:			.DB $DA,$06,$03,$54,$AB,$A6,$03,$46,$AD,$A8,$03,$38,$AF,$A9,$03,$2A,$B0,$AB,$03,$00,$B0,$03,$54,$AB,$A6,$03,$46,$AD,$A8,$03,$38,$AF,$A9,$03,$2A,$B0,$AB,$03,$00,$B0,$03,$54,$AB,$A6,$03,$46,$AD,$A8,$03,$38,$AF,$A9,$03,$2A,$B0,$AB,$03,$20,$B2,$AD,$03,$16,$B4,$AF,$03,$0C,$B5,$B0,$00
+SOUND_MessageBox:				.DB $DA,$12,$0C,$32,$AB,$AF,$B2,$30,$B7,$00
+SOUND_MoveOnOW:					.DB $DA,$12,$0C,$32,$DD,$B5,$00,$06,$B7,$00
+SOUND_Yoshi:					.DB $DA,$0E,$0F,$32,$DD,$9A,$00,$0C,$AB,$0F,$00,$00,$8C,$1B,$32,$DD,$A4,$00,$18,$A1,$00
+SOUND_Whistle:					.DB $DA,$06,$08,$32,$DD,$A4,$00,$08,$B7,$08,$EB,$00,$08,$AB,$16,$EB,$00,$12,$B7,$00
+SOUND_SwitchPalaceEject:		.DB $DA,$12,$06,$38,$38,$B7,$06,$3F,$31,$B5,$06,$29,$46,$B2,$06,$4D,$23,$AF,$06,$38,$38,$B5,$06,$3F,$31,$B2,$06,$2A,$46,$BB,$06,$46,$1C,$AD,$30,$23,$4D,$AB,$00
+SOUND_ValleyofBowserAppears:	.DB $DA,$11,$0C,$00,$54,$8C,$08,$1C,$0E,$8C,$0C,$46,$38,$8C,$12,$38,$54,$8D,$0C,$0E,$1C,$8B,$12,$2A,$1C,$89,$18,$1C,$0E,$8B,$08,$0E,$1C,$8C,$0C,$1C,$0E,$89,$06,$2A,$15,$8B,$08,$0E,$1C,$8C,$30,$1C,$1C,$8B,$FF
+SOUND_CastleFuse:				.DB $DA,$8E,$03,$06,$23,$00,$98,$98,$06,$1C,$07,$98,$98,$08,$19,$0A,$98,$06,$15,$0E,$98,$98,$08,$11,$11,$98,$98,$06,$0E,$1F,$98,$06,$09,$18,$98,$98,$08,$07,$1C,$98,$06,$00,$23,$98,$98,$00
+SOUND_CastleBomb:				.DB $DA,$11,$60,$00,$54,$98,$00
+SOUND_KoopalingHitsLava:		.DB $DA,$8F,$08,$06,$28,$93,$DA,$91,$08,$06,$32,$C3,$06,$00,$93,$DA,$8E,$08,$06,$26,$C3,$DA,$90,$08,$06,$2D,$C3,$06,$00,$93,$DA,$8D,$08,$06,$18,$C3,$DA,$8F,$08,$06,$1E,$C3,$06,$00,$93,$DA,$8C,$08,$06,$14,$C3,$DA,$8E,$08,$06,$19,$C3,$06,$00,$93,$DA,$8B,$08,$06,$14,$C3,$DA,$8D,$08,$06,$19,$C3,$00
+SOUND_ClapPop:					.DB $DA,$0C,$04,$46,$B5,$DA,$9C,$10,$18,$2A,$C3,$00
+SOUND_Thunder:					.DB $DA,$11,$0C,$46,$A4,$06,$30,$A3,$06,$18,$A1,$0C,$2A,$9D,$12,$38,$9A,$18,$3F,$99,$0C,$46,$9A,$12,$54,$97,$18,$59,$95,$18,$54,$94,$24,$1C,$93,$30,$0E,$92,$00
+SOUND_FireSpit:					.DB $DA,$91,$0D,$60,$15,$AB,$00
+SOUND_OWCastleCollapse:			.DB $DA,$0B,$04,$46,$3F,$AB,$9A,$A8,$04,$3F,$46,$95,$8B,$A6,$04,$2A,$3F,$9D,$A6,$90,$04,$38,$1C,$A4,$89,$9C,$04,$0E,$31,$9F,$8B,$95,$04,$31,$07,$8C,$82,$90,$04,$07,$23,$8E,$84,$85,$04,$1C,$00,$82,$87,$84,$00
+SOUND_OWTileAppears:			.DB $DA,$02,$06,$38,$B7,$B2,$B7,$B9,$BB,$BE,$18,$C3,$00
+SOUND_YoshiSpit:				.DB $DA,$05,$0C,$54,$DD,$9C,$00,$0C,$9F,$0F,$EB,$00,$0C,$90,$00
+SOUND_KoopalingDefeated:		.DB $DA,$03,$10,$15,$3F,$DD,$A1,$00,$10,$B7,$18,$EB,$00,$18,$AD,$12,$38,$15,$DD,$A8,$00,$12,$AB,$0C,$EB,$00,$0C,$9F,$08,$0E,$31,$DD,$A4,$00,$08,$A8,$06,$EB,$00,$06,$9C,$0C,$2A,$0E,$DD,$A1,$00,$0C,$A4,$06,$EB,$00,$06,$98,$0C,$07,$23,$DD,$9C,$00,$0C,$9F,$06,$EB,$00,$06,$93,$0C,$1B,$04,$DD,$98,$00,$0C,$9C,$06,$EB,$00,$06,$90,$0C,$04,$18,$DD,$95,$00,$0C,$98,$06,$EB,$00,$06,$8C,$6C,$00,$A5,$15,$38,$38,$DD,$AB,$00,$12,$BC,$00
+SOUND_PBalloon:					.DB $DA,$06,$4B,$46,$DD,$90,$00,$48,$9F,$00
+SOUND_GrinderClick1:			.DB $DA,$05
+SOUND_GrinderClick2:			.DB $DA,$07,$06,$46,$A9,$06,$00,$B5,$06,$46,$A8,$06,$00,$B5,$00
+SOUND_SpinJumpKill:				.DB $DA,$0A,$1B,$54,$DD,$A4,$00,$18,$9F,$DA,$02,$06,$B4,$B7,$B4,$0C,$B7,$00
+SOUND_SpringBoard:				.DB $DA,$05,$08,$54,$DD,$9F,$00,$08,$A3,$12,$EB,$00,$12,$AB,$06,$3F,$EB,$00,$06,$A8,$11,$31,$EB,$00,$11,$AB,$08,$23,$EB,$00,$08,$A8,$0F,$15,$EB,$00,$0C,$AB,$00
+SOUND_Pause:					.DB $DA,$02,$0C,$54,$B4,$B0,$B4,$18,$B0,$00
+SOUND_ScrollScreen:				.DB $DA,$03,$03,$23,$9F,$93,$A0,$94,$A1,$95,$A2,$96,$A3,$97,$A4,$98,$A5,$99,$A6,$9A,$00
+SOUND_FlyWithCape:				.DB $DA,$05,$0C,$1C,$DD,$A1,$00,$0C,$9F,$18,$2A,$EB,$00,$18,$BC,$0F,$15,$EB,$00,$0C,$B0,$00
+SOUND_Swim:						.DB $DA,$01,$0C,$2A,$DD,$A1,$00,$0C,$9F,$15,$59,$EB,$00,$12,$C1,$00
+SOUND_ItemIntoReserve:			.DB $DA,$06,$0F,$31,$DD,$A4,$00,$0C,$B7,$0F,$00,$00,$8C,$18,$31,$B4,$00
+SOUND_EggHatch:					.DB $DA,$02,$06,$38,$B4,$B7,$12,$00,$C6,$06,$38,$B4,$B7,$B6,$BA,$00
+SOUND_YoshiGulp:				.DB $DA,$05,$0F,$54,$DD,$8C,$00,$0C,$90,$0C,$00,$00,$8C,$DA,$01,$1B,$59,$DD,$96,$00,$18,$93,$00
+SOUND_LoseYoshi:				.DB $DA,$06,$06,$38,$DD,$98,$00,$06,$AD,$0F,$38,$EB,$00,$0C,$A4,$18,$00,$A4,$00
+SOUND_YoshiCoin:				.DB $DA,$06,$03,$54,$B5,$B4,$B5,$B4,$03,$46,$B5,$B4,$03,$38,$B5,$B4,$03,$2A,$B5,$B4,$03,$15,$B5,$B4,$00
+SOUND_TimeRunningLow1:			.DB $DA,$0F,$0C,$2A,$AE,$B8,$0C,$00,$B8,$0C,$2A,$B8,$18,$2A,$B8,$0C,$31,$AF,$B9,$0C,$00,$B9,$0C,$31,$B9,$18,$31,$B9,$0C,$38,$BA,$0C,$00,$BA,$30,$38,$BA,$00
+SOUND_TimeRunningLow2:			.DB $DA,$0F,$0C,$2A,$A9,$B2,$0C,$00,$B2,$0C,$2A,$B2,$18,$2A,$B2,$0C,$31,$AA,$B3,$0C,$00,$B3,$0C,$31,$B3,$18,$31,$B3,$0C,$38,$B4,$0C,$00,$B4,$30,$38,$B4,$00
+SOUND_MidwayPoint:				.DB $DA,$06,$0C,$38,$0E,$DD,$A4,$00,$0C,$B7,$18,$1C,$1C,$EB,$00,$18,$B0,$34,$0E,$38,$EB,$00,$30,$A4,$00
+SOUND_PipeHurt:					.DB $DA,$03,$03,$00,$38,$AD,$AB,$03,$0E,$23,$A8,$A4,$03,$15,$15,$A3,$9F,$03,$1C,$00,$9D,$9A,$03,$38,$00,$AD,$AB,$03,$23,$0E,$A8,$A4,$03,$15,$15,$A3,$9F,$03,$00,$1C,$9D,$9A,$03,$00,$38,$AD,$AB,$03,$0E,$23,$A8,$A4,$03,$15,$15,$A3,$9F,$03,$1C,$00,$9D,$9A,$00
+SOUND_OnOffSwitch:				.DB $DA,$06,$09,$38,$DD,$9F,$00,$06,$AF,$09,$38,$DD,$9F,$00,$06,$AF,$09,$38,$DD,$9F,$00,$06,$AF,$00
+SOUND_ShootFireball:			.DB $DA,$02,$03,$4D,$AC,$B0,$B6,$00
+SOUND_KickShell:				.DB $DA,$04,$06,$59,$AE,$B5,$00
+SOUND_EnemyStomp1:				.DB $DA,$04,$06,$59,$B0,$B7,$00
+SOUND_EnemyStomp2:				.DB $DA,$04,$06,$59,$B2,$B9,$00
+SOUND_EnemyStomp3:				.DB $DA,$04,$06,$59,$B4,$BB,$00
+SOUND_EnemyStomp4:				.DB $DA,$04,$06,$59,$B6,$BD,$00
+SOUND_EnemyStomp5:				.DB $DA,$04,$06,$59,$B8,$BF,$00
+SOUND_EnemyStomp6:				.DB $DA,$04,$06,$59,$BA,$C1,$00
+SOUND_EnemyStomp7:				.DB $DA,$04,$06,$59,$BC,$C3,$00
+SOUND_Contact:					.DB $DA,$07,$09,$31,$DD,$98,$00,$06,$9F,$DA,$0C,$1B,$54,$DD,$A4,$00,$0C,$98,$00
+SOUND_YoshiTongue:				.DB $DA,$06,$0F,$23,$DD,$98,$00,$0C,$93,$0F,$DD,$9C,$00,$0C,$9E,$00
+SOUND_HitHead:					.DB $DA,$0A,$07,$23,$DD,$93,$00,$04,$B7,$00
+SOUND_HitVineBlock:				.DB $DA,$04,$06,$3F,$A4,$03,$AB,$AC,$A5,$AC,$AD,$A6,$AD,$AE
+SOUND_HitPrizeBlock:			.DB $DA,$04,$06,$3F,$A7,$03,$AE,$AF,$A8,$AF,$B0,$A9,$B0,$B1,$AA,$B1,$B2,$AB,$B2,$B3,$00
+SOUND_ItemFromReserve:			.DB $DA,$02,$0F,$46,$1C,$DD,$98,$00,$0C,$9F,$0F,$1C,$46,$DD,$A4,$00,$0C,$AB,$0F,$46,$1C,$DD,$A0,$00,$0C,$A7,$0F,$1C,$46,$DD,$AC,$00,$0C,$B3,$0F,$46,$1C,$DD,$A2,$00,$0C,$A9,$0F,$1C,$46,$DD,$AE,$00,$0C,$B5,$00
+SOUND_DryBonesCollapse:			.DB $DA,$02,$09,$1C,$1C,$B0,$08,$19,$1F,$AE,$07,$1F,$19,$AC,$06,$15,$23,$AA,$05,$23,$15,$A8,$04,$0E,$2A,$A6,$00
+SOUND_GetCape:					.DB $DA,$03,$0C,$15,$07,$DD,$95,$00,$0C,$A4,$06,$EB,$00,$06,$97,$0C,$07,$1C,$DD,$99,$00,$0C,$A8,$06,$EB,$00,$06,$9A,$0C,$23,$0E,$DD,$9D,$00,$0C,$AD,$06,$EB,$00,$06,$9D,$0C,$0E,$31,$DD,$A1,$00,$0C,$B0,$06,$EB,$00,$06,$A0,$0C,$38,$15,$DD,$A5,$00,$0C,$B4,$06,$EB,$00,$06,$A3,$0C,$15,$3F,$DD,$A9,$00,$0C,$B9,$09,$EB,$00,$06,$AD,$00
+SOUND_UnusedCape:				.DB $DA,$05,$0C,$2A,$0E,$DD,$A1,$00,$0C,$98,$06,$EB,$00,$06,$A3,$0C,$0E,$31,$DD,$A4,$00,$0C,$9B,$06,$EB,$00,$06,$A6,$0C,$3F,$15,$DD,$A7,$00,$0C,$9E,$09,$EB,$00,$06,$A8,$00
+SOUND_GetPowerup:				.DB $DA,$02,$03,$46,$98,$9C,$9F,$A4,$9F,$A4,$A8,$AB,$B0,$AB,$A0,$A4,$A7,$AC,$A7,$AC,$B0,$B3,$B8,$B3,$A2,$A6,$A9,$AE,$A9,$AE,$B2,$B5,$BA,$B5,$00
+SOUND_1Up:						.DB $DA,$02,$08,$59,$B4,$B7,$C0,$BC,$BE,$0C,$C3,$00
+SOUND_MagikoopaMagic:			.DB $DA,$01,$03,$59,$A4,$A6,$A7,$A8,$03,$59,$A9,$AA,$AB,$AC,$03,$4D,$A9,$AA,$AB,$AC,$03,$46,$A9,$AA,$AB,$AC,$03,$3F,$A9,$AA,$AB,$AC,$03,$38,$A9,$AA,$AB,$AC,$00
+SOUND_ItemPastGoal:				.DB $DA,$03,$03,$1C,$1C,$A3,$A1,$9F,$9D,$A3,$06,$A1,$03,$1C,$1C,$A4,$A3,$A1,$A0,$A4,$06,$A3,$03,$2A,$0E,$A8,$A6,$A5,$A4,$03,$0E,$23,$A8,$A6,$A5,$A4,$03,$23,$0E,$A8,$A6,$A5,$A4,$03,$0E,$1C,$A8,$A6,$A5,$A4,$03,$1C,$0E,$A8,$A6,$A5,$A4,$03,$07,$15,$A8,$A6,$A5,$A4,$03,$15,$07,$A8,$A6,$A5,$A4,$00
+SOUND_HurtWhileFlying:			.DB $DA,$04,$03,$46,$AD,$08,$AC,$03,$46,$AF,$08,$B0,$03,$3F,$B1,$B3,$B4,$B5,$03,$38,$B3,$B5,$B6,$B7,$00
+SOUND_SpinJump:					.DB $DA,$01,$03,$3F,$B2,$08,$B3,$03,$3F,$B5,$B6,$B7,$B8,$03,$38,$B5,$B6,$B7,$B8,$03,$31,$B5,$B6,$B7,$B8,$00
+SOUND_Coin:						.DB $DA,$02,$08,$46,$BB,$24,$C0,$00
+SOUND_Shatter:					.DB $DA,$07,$04,$2A,$2A,$BB,$C0,$04,$31,$23,$AB,$A6,$04,$23,$31,$98,$9A,$04,$38,$1C,$9C,$91,$04,$1C,$38,$95,$97,$04,$3F,$15,$90,$8C,$04,$15,$3F,$8B,$82,$04,$46,$0E,$85,$87,$00
+SOUND_Door:						.DB $DA,$0A,$03,$38,$9D,$9E,$9F,$A0,$A1,$A2,$A3,$A4,$0C,$00,$9C,$03,$38,$9F,$A0,$9F,$A0,$06,$9F,$0C,$00,$AB,$03,$38,$A3,$A4,$A3,$A4,$0C,$00,$AB,$03,$38,$A6,$A7,$A6,$A7,$06,$A6,$00
+SOUND_BulletBill:				.DB $DA,$0A,$06,$54,$98,$06,$00,$8B,$1B,$54,$DD,$9F,$00,$18,$98,$00
+SOUND_DrumRoll:					.DB $DA,$0B,$08,$38,$A4,$06,$23,$A4,$06,$1C,$A4,$06,$15,$A4,$06,$07,$A4,$FF
+SOUND_DrumRollEnd:				.DB $DA,$0B,$06,$15,$A4,$06,$1C,$A4,$08,$2A,$A4,$18,$38,$A4,$00
+
+InstrumentTable:
+	.DB $00, $FE, $6A, $B8, $06
+	.DB $01, $FA, $6A, $B8, $03
+	.DB $02, $AE, $2F, $B8, $04
+	.DB $03, $FE, $6A, $B8, $03
+	.DB $04, $A9, $6A, $B8, $03
+	.DB $07, $AE, $26, $B8, $07
+	.DB $08, $FA, $6A, $B8, $03
+	.DB $09, $9E, $1F, $B8, $03
+	.DB $05, $AE, $26, $B8, $1E
+	.DB $0A, $EE, $6A, $B8, $02
+	.DB $0B, $FE, $6A, $B8, $08
+	.DB $01, $F7, $6A, $B8, $03
+	.DB $10, $0E, $6A, $7F, $04
+	.DB $0C, $FE, $6A, $B8, $03
+	.DB $0D, $AE, $26, $B8, $07
+	.DB $12, $8E, $E0, $B8, $03
+	.DB $0C, $FE, $70, $B8, $03
+	.DB $11, $FE, $6A, $B8, $05
+	.DB $01, $E9, $6A, $B8, $03
+
+PercussionTable:
+	.DB $0F, $0F, $6A, $7F, $03, $A8
+	.DB $06, $0E, $6A, $40, $07, $A4
+	.DB $06, $8C, $E0, $70, $07, $A1
+	.DB $0E, $FE, $6A, $B8, $07, $A4
+	.DB $0E, $FE, $6A, $B8, $08, $A4
+	.DB $0B, $FE, $6A, $B8, $02, $9C
+	.DB $0B, $7E, $6A, $7F, $08, $A6
+	.DB $0B, $7E, $6A, $30, $08, $A6
+	.DB $0E, $0E, $6A, $7F, $03, $A1
+
+	BASE_END $5570
+
+.ENDS

@@ -1,0 +1,59 @@
+This document lists the contents of Super Mario World's graphic files. The
+listed number is the id of the graphic file as referenced by memory. Every
+single tile isn't mentioned, but rather the main parts of each file for
+quick reference. The format of each file is stated after the graphic
+number. Graphic 27 is a special exception. It is a special mode 7 graphic
+stored as 4BPP, but only uses 3BPP colors.
+
+00 (3BPP): Nintendo logo, power-ups
+01 (3BPP): Koopa, goomba, piranha
+02 (3BPP): Spiny, wiggler, para-goomba, bob-omb, p-balloon
+03 (3BPP): Thwomp, magikoopa, ball n' chain, bony fish, bony beetle
+04 (3BPP): Buzzy beetle, blargg, football, bat swooper, piranha stem, skull raft
+05 (3BPP): Diggin' chuck, platforms, line-guided saw, question mark orb
+06 (3BPP): Torpedo ted, urchin, dolphin, puffer fish, rip van fish
+07 (3BPP): Ghost house tiles, bone/log platform, spikes
+08 (3BPP): Yoshi's house tiles, switch palace tiles, bowser's castle
+09 (3BPP): Monty mole, sumo brother, pokey, pitchin' chuck, volcano lotus
+0A (3BPP): Wendy, Lemmy
+0B (3BPP): Morton, Ludwig, Roy
+0C (3BPP): Sunken ship tiles
+0D (3BPP): Kissing peach, pressed p-switch, text, underwater tiles
+0E (3BPP): Puntin' chuck, disco ball, ninji, volcano lotus, "The End" peach
+0F (3BPP): No yoshi sign, ending graphics, player start/game over text, exit sign
+10 (3BPP): Overworld sprite tiles
+11 (3BPP): Big boo, boo block, eerie, fishin' boo pole
+12 (3BPP): Bony koopa, climbing koopa, sparky, spike log, grinder, brown platform
+13 (3BPP): Yoshi egg, chargin' chuck, clappin' chuck, hammer bro, fish, yoshi fireball, wood platform
+14 (3BPP): Pipe, yoshi coin, cement block, bullet bill launcher, clouds, turn block, p-switch block, animations
+15 (3BPP): Grassy ground tiles, bush, skinny pipe
+16 (3BPP): Rope tiles, log, plant column
+17 (3BPP): Large bush, unused yoshi berry, 3-up moon, door, star block, running block, fence, diagonal pipe, glass block
+18 (3BPP): Castle tiles, large spikes, castle door, canvas
+19 (3BPP): Forest/cloud/mountain tiles, log platform
+1A (3BPP): Underground tiles, bone platform
+1B (3BPP): Mountain tiles, mushroom platform
+1C (3BPP): Grassy overworld tiles, overworld water
+1D (3BPP): Overworld objects
+1E (3BPP): Overworld levels/signs
+1F (3BPP): Forest/cloud tiles, log
+20 (3BPP): Banzai bill, mega mole, rex, sideways platform
+21 (3BPP): Bowser
+22 (3BPP): Peach in bowser fight, castle tiles
+23 (3BPP): Dino torch, dino rhino
+24 (3BPP): Mechakoopa, peach in bowser fight, bowser's bowling ball, power-up box
+25 (3BPP): Iggy, larry, reznor
+26 (3BPP): Ending yoshi/peach
+27 (4BPP): Iggy/larry platform, reznors' wheel
+28 (2BPP): Character set 1, layer 3 tiles, title-screen
+29 (2BPP): Big numbers, title-screen
+2A (2BPP): Character set 2
+2B (2BPP): Layer 3 castle/cave/smasher, unused "Super Mario Bros. 4"--not in Japanese version
+2C (3BPP): Cut-scene tiles, "The End" luigi/peach
+2D (3BPP): Cut-scene tiles, "The End" peach
+2E (3BPP): Ending tiles, "Thank You"
+2F (2BPP): Large characters
+30 (3BPP): "The End" mario/luigi
+31 (3BPP): Funky passed special tiles
+32 (4BPP): Player tiles, yoshi berry
+33 (3BPP): Animations

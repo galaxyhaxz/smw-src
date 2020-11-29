@@ -1,0 +1,30 @@
+; libmath_WaitDivide
+;
+; Function: waits six cycles to let the SNES finish dividing. This is
+;           necessary on real hardware.
+; Usage:
+;   No arguments.
+
+MACRO libmath_WaitDivide()
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+ENDMACRO
+
+
+; libmath_WaitMultiply
+;
+; Function: waits four cycles to let the SNES finish multiplying. This is
+;           necessary on real hardware.
+; Usage:
+;   No arguments.
+
+MACRO libmath_WaitMultiply()
+	NOP
+	NOP
+	NOP
+	NOP
+ENDMACRO

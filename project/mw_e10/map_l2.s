@@ -1,0 +1,1833 @@
+DATA_04A400:	.INCBIN "images/overworld/border.stim"
+
+DATA_04A533:	.INCBIN "overworld/layer2/tiles.bin"
+
+DATA_04C02B:	.INCBIN "overworld/layer2/properties.bin"
+
+DATA_04D678:
+	.DB $00,$C0,$C0,$C0,$30,$C0,$C0,$00
+	.DB $C0,$20,$30,$C0,$C0,$C0,$C0,$D0
+	.DB $40,$40,$40,$D0,$40,$80,$80,$00
+	.DB $00,$00,$00,$40,$00,$80,$20,$80
+	.DB $40,$40,$80,$60,$90,$00,$00,$C0
+	.DB $00,$00,$00,$C0,$40,$20,$40,$C0
+	.DB $E0,$C0,$00,$C0,$00,$00,$C0,$20
+	.DB $80,$80,$80,$80,$30,$40,$E0,$00
+	.DB $40,$E0,$E0,$D0,$70,$FF,$40,$90
+	.DB $55,$80,$80,$80,$80,$00,$C0,$C0
+	.DB $C0,$C0,$40,$00,$80,$A0,$30,$AA
+	.DB $60,$D0,$80,$00,$55,$55,$00,$00
+	.DB $AA,$55,$FF,$FF,$00,$00,$00,$00
+	.DB $00,$00,$00,$00,$00,$00,$00,$00
+	.DB $00
+
+CODE_04D6E9:
+	REP #$30
+	STZ wm_Bg1VOfs
+	LDA #$FFFF
+	STA wm_Map16L1LastLU
+	STA wm_Map16L1LastRD
+	LDA #$0202
+	STA wm_Layer1ScrollDir
+	LDA wm_OWCharB
+	LSR
+	LSR
+	AND #$00FF
+	TAX
+	LDA wm_MapData.MarioMap,X
+	AND #$000F
+	BEQ _f
+	LDA #$0020
+	STA wm_Map16L1UploadRD
+	LDA #$0200
+	STA wm_Bg1VOfs
+__	JSL CODE_05881A
+	JSL CODE_0087AD
+	REP #$30
+	INC wm_Map16L1UploadRD
+	LDA wm_Bg1VOfs
+	CLC
+	ADC #$0010
+	STA wm_Bg1VOfs
+	AND #$01FF
+	BNE _b
+	LDA wm_Bg2VOfs
+	STA wm_Bg1VOfs
+	STZ wm_Map16L1UploadRD
+	STZ wm_LevelHeaderMode
+	STZ wm_IsVerticalLvl
+	LDA #$FFFF
+	STA wm_Map16L1LastLU
+	STA wm_Map16L1LastRD
+	SEP #$30
+	LDA #$80
+	STA VMAINC
+	STZ VMADDL
+	LDA #$30
+	STA VMADDH
+	LDX #$06
+-	LDA.L PARAMS_04DAB3,X
+	STA CH1.PARAM,X
+	DEX
+	BPL -
+	LDA wm_OWCharB
+	LSR
+	LSR
+	TAX
+	LDA wm_MapData.MarioMap,X
+	BEQ +
+	LDA #$60
+	STA CH1.ADDA1M
++	LDA #$02
+	STA MDMAEN
+	RTL
+
+CODE_04D770:
+.REPEAT 32 INDEX COUNT
+	STA wm_Map16SetH+(COUNT*$01B0),X
+.ENDR
+	INX
+	RTS
+
+CODE_04D7F2:
+	REP #$30
+	LDA #$0000
+	SEP #$20
+	LDA #<wm_Map16PageL.5
+	STA m13
+	LDA #>wm_Map16PageL.5
+	STA m14
+	LDA #wm_Map16PageL.5>>16
+	STA m15
+	LDA #<wm_Map16PageL.9
+	STA m10
+	LDA #>wm_Map16PageL.9
+	STA m11
+	LDA #wm_Map16PageL.9>>16
+	STA m12
+	LDA #<wm_Map16PageL
+	STA m4
+	LDA #>wm_Map16PageL
+	STA m5
+	LDA #wm_Map16PageL>>16
+	STA m6
+	LDY #$0001
+	STY m0
+	LDY #$07FF
+	LDA #$00
+-	STA [m10],Y
+	STA [m13],Y
+	DEY
+	BPL -
+	LDY #$0000
+	TYX
+-	LDA [m4],Y
+	CMP #$56
+	BCC +
+	CMP #$81
+	BCS +
+	LDA m0
+	STA [m13],Y
+	TAX
+	LDA.L DATA_04D678,X
+	STA [m10],Y
+	INC m0
++	INY
+	CPY #$0800
+	BNE -
+	STZ m15
+-	JSR CODE_04DA49
+	INC m15
+	LDA m15
+	CMP #$6F
+	BNE -
+	RTS
+
+DATA_04D85D:
+	.DB $00,$00,$00,$00,$00,$00,$69,$04
+	.DB $4B,$04,$29,$04,$09,$04,$D3,$00
+	.DB $E5,$00,$A5,$00,$D1,$00,$85,$00
+	.DB $A9,$00,$CB,$00,$BD,$00,$9D,$00
+	.DB $A5,$00,$07,$02,$00,$00,$27,$02
+	.DB $12,$05,$08,$06,$E3,$04,$C8,$04
+	.DB $2A,$06,$EC,$04,$0C,$06,$1C,$06
+	.DB $4A,$06,$00,$00,$E0,$04,$3E,$00
+	.DB $30,$01,$34,$01,$36,$01,$3A,$01
+	.DB $00,$00,$57,$01,$84,$01,$3A,$01
+	.DB $00,$00,$00,$00,$AA,$06,$76,$06
+	.DB $C8,$06,$AC,$06,$76,$06,$00,$00
+	.DB $00,$00,$A4,$06,$AA,$06,$C4,$06
+	.DB $00,$00,$04,$03,$00,$00,$00,$00
+	.DB $79,$05,$77,$05,$59,$05,$74,$05
+	.DB $00,$00,$54,$05,$00,$00,$34,$05
+	.DB $00,$00,$00,$00,$00,$00,$00,$00
+	.DB $00,$00,$00,$00,$B3,$03,$00,$00
+	.DB $00,$00,$00,$00,$DF,$02,$DC,$02
+	.DB $00,$00,$7E,$02,$00,$00,$00,$00
+	.DB $00,$00,$E0,$04,$E0,$04,$00,$00
+	.DB $00,$00,$00,$00,$00,$00,$00,$00
+	.DB $00,$00,$00,$00,$34,$05,$34,$05
+	.DB $00,$00,$00,$00,$87,$07,$00,$00
+	.DB $F0,$01,$68,$03,$65,$03,$B5,$03
+	.DB $00,$00,$36,$07,$39,$07,$3C,$07
+	.DB $1C,$07,$19,$07,$16,$07,$13,$07
+	.DB $11,$07,$00,$00,$00,$00,$00,$00
+
+DATA_04D93D:
+	.DB $00,$00,$00,$00,$00,$00,$21,$92
+	.DB $21,$16,$20,$92,$20,$12,$23,$46
+	.DB $23,$8A,$22,$8A,$23,$42,$22,$0A
+	.DB $22,$92,$23,$16,$22,$DA,$22,$5A
+	.DB $22,$8A,$28,$0E,$00,$00,$28,$8E
+	.DB $24,$04,$28,$10,$23,$86,$23,$10
+	.DB $28,$94,$23,$98,$28,$18,$28,$58
+	.DB $29,$14,$00,$00,$23,$80,$20,$DC
+	.DB $24,$C0,$24,$C8,$24,$CC,$24,$D4
+	.DB $00,$00,$25,$4E,$26,$08,$24,$D4
+	.DB $00,$00,$00,$00,$2A,$94,$29,$CC
+	.DB $2B,$10,$2A,$98,$29,$CC,$00,$00
+	.DB $00,$00,$2A,$88,$2A,$94,$2B,$08
+	.DB $00,$00,$2C,$08,$00,$00,$00,$00
+	.DB $25,$D2,$25,$CE,$25,$52,$25,$C8
+	.DB $00,$00,$25,$48,$00,$00,$24,$C8
+	.DB $00,$00,$00,$00,$00,$00,$00,$00
+	.DB $00,$00,$00,$00,$2E,$C6,$00,$00
+	.DB $00,$00,$00,$00,$2B,$5E,$2B,$58
+	.DB $00,$00,$29,$DC,$00,$00,$00,$00
+	.DB $00,$00,$23,$80,$23,$80,$00,$00
+	.DB $00,$00,$00,$00,$00,$00,$00,$00
+	.DB $00,$00,$00,$00,$24,$C8,$24,$C8
+	.DB $00,$00,$00,$00,$2E,$0E,$00,$00
+	.DB $27,$C0,$2D,$90,$2D,$8A,$2E,$CA
+	.DB $00,$00,$2C,$CC,$2C,$D2,$2C,$D8
+	.DB $2C,$58,$2C,$52,$2C,$4C,$2C,$46
+	.DB $2C,$42,$00,$00,$00,$00,$00,$00
+
+DATA_04DA1D:
+	.DB $6E,$6F,$70,$71,$72,$73,$74,$75
+	.DB $59,$53,$52,$83,$4D,$57,$5A,$76
+	.DB $78,$7A,$7B,$7D,$7F,$54
+
+DATA_04DA33:
+	.DB $66,$67,$68,$69,$6A,$6B,$6C,$6D
+	.DB $58,$43,$44,$45,$25,$5E,$5F,$77
+	.DB $79,$63,$7C,$7E,$80,$23
+
+CODE_04DA49:
+	REP #$30
+	LDA m15
+	AND #$00F8
+	LSR
+	LSR
+	LSR
+	TAY
+	LDA m15
+	AND #$0007
+	TAX
+	SEP #$20
+	LDA wm_MapData.OwEventFlags,Y
+	AND.L DATA_04E44B,X
+	BEQ _Return04DAAC
+	REP #$20
+	LDA.W #(wm_Map16PageL)&$FFFF
+	STA m4
+	LDA m15
+	AND #$00FF
+	ASL
+	TAX
+	LDA.L DATA_04D85D,X
+	TAY
+	LDX #$0015
+	SEP #$20
+	LDA.B #wm_Map16PageL>>16
+	STA m6
+	LDA [m4],Y
+-	CMP.L DATA_04DA1D,X
+	BEQ CODE_04DA8F
+	DEX
+	BPL -
+	JMP _04DA9D
+
+CODE_04DA8F:
+	LDA.L DATA_04DA33,X
+	STA [m4],Y
+	CPX #$0015
+	BNE _04DA9D
+	INY
+	STA [m4],Y
+_04DA9D:
+	LDA m15
+	JSR CODE_04E677
+	SEP #$10
+	STZ wm_OWEventPtr
+	LDA m15
+	JSR _04E9F1
+_Return04DAAC:
+	RTS
+
+CODE_04DAAD:
+	PHP
+	JSR CODE_04DC6A
+	PLP
+	RTL
+
+PARAMS_04DAB3:
+	.DB $01,$18
+	.DL wm_OW_L2Tiles
+	.DB $00,$20
+
+CODE_04DABA:
+	SEP #$20
+	REP #$10
+	LDA [m0],Y
+	STA m3
+	AND #$80
+	BNE CODE_04DAD6
+-	INY
+	LDA [m0],Y
+	STA wm_OW_L2Tiles,X
+	INX
+	INX
+	DEC m3
+	BPL -
+	JMP _04DAE9
+
+CODE_04DAD6:
+	LDA m3
+	AND #$7F
+	STA m3
+	INY
+	LDA [m0],Y
+-	STA wm_OW_L2Tiles,X
+	INX
+	INX
+	DEC m3
+	BPL -
+_04DAE9:
+	INY
+	CPX m14
+	BCC CODE_04DABA
+	RTS
+
+CODE_04DAEF:
+	SEP #$30
+	LDA wm_OWSubmapSwitchIndex
+	JSL ExecutePtr
+
+Ptrs04DAF8:
+	.DW CODE_04DB18
+	.DW CODE_04DCB6
+	.DW CODE_04DCB6
+	.DW CODE_04DCB6
+	.DW CODE_04DCB6
+	.DW CODE_04DB9D
+	.DW CODE_04DB18
+	.DW CODE_04DBCF
+
+DATA_04DB08:	.DB $00,$F9,$00,$07
+
+DATA_04DB0C:	.DB $00,$00,$00,$70
+
+DATA_04DB10:	.DB $C0,$FA,$40,$05
+
+DATA_04DB14:	.DB $00,$00,$00,$54
+
+CODE_04DB18:
+	REP #$20
+	LDX wm_OWFadeFlag
+	LDA wm_OWFadeMathX
+	CLC
+	ADC.W DATA_04DB08,X
+	STA wm_OWFadeMathX
+	SEC
+	SBC.W DATA_04DB0C,X
+	EOR.W DATA_04DB08,X
+	BPL +
+	LDA wm_OWFadeMathY
+	CLC
+	ADC.W DATA_04DB10,X
+	STA wm_OWFadeMathY
+	SEC
+	SBC.W DATA_04DB14,X
+	EOR.W DATA_04DB10,X
+	BMI ++
++	LDA.W DATA_04DB0C,X
+	STA wm_OWFadeMathX
+	LDA.W DATA_04DB14,X
+	STA wm_OWFadeMathY
+	INC wm_OWSubmapSwitchIndex
+	TXA
+	EOR #$0002
+	TAX
+	STX wm_OWFadeFlag
+	BEQ ++
+	JSR CODE_049A93
+++	SEP #$20
+	LDA wm_OWFadeMathY+1
+	ASL
+	STA m0
+	LDA wm_OWFadeMathX+1
+	CLC
+	ADC #$80
+	XBA
+	LDA #$80
+	SEC
+	SBC wm_OWFadeMathX+1
+	REP #$20
+	LDX #$00
+	LDY #$A8
+-	CPX m0
+	BCC +
+	LDA #$00FF
++	STA wm_HDMAWindowsTbl+78,Y
+	STA wm_HDMAWindowsTbl+248,X
+	INX
+	INX
+	DEY
+	DEY
+	BNE -
+	SEP #$20
+	LDA #$33
+	STA wm_W12Sel
+	LDA #$33
+_04DB95:
+	STA wm_WObjSel
+	LDA #$80
+	STA wm_HDMAEn
+	RTS
+
+CODE_04DB9D:
+	LDA wm_OWCharB
+	LSR
+	LSR
+	TAX
+	LDA wm_MapData.MarioMap,X
+	TAX
+	LDA.L DATA_04DC02,X
+	STA wm_LvHeadTileset
+	JSL CODE_00A594
+	LDA #$FE
+	STA wm_Palette.1.ColL
+	LDA #$01
+	STA wm_Palette.1.ColH
+	STZ wm_Palette.129.Col
+	LDA #$06
+	STA wm_PalUploadIndex
+	INC wm_OWSubmapSwitchIndex
+	RTS
+
+DATA_04DBC8:	.DB $02,$03,$04,$06,$07,$09,$05
+
+CODE_04DBCF:
+	STZ wm_OWSubmapSwitchIndex
+	LDA #$04
+	STA wm_OWProcessPtr
+	LDA wm_OWCharB
+	LSR
+	LSR
+	TAY
+	LDA wm_2PlayerGame
+	BEQ +
+	LDA wm_OWAlterMusicFlag
+	BNE +
+	TYA
+	EOR #$01
+	TAX
+	LDA wm_MapData.MarioMap,Y
+	CMP wm_MapData.MarioMap,X
+	BEQ ++
++	LDA wm_MapData.MarioMap,Y
+	TAX
+	LDA.L DATA_04DBC8,X
+	STA wm_MusicCh1
+	STZ wm_OWAlterMusicFlag
+++	RTS
+
+DATA_04DC02:	.DB $11,$12,$13,$14,$15,$16,$17
+
+CODE_04DC09:
+	SEP #$30
+	LDA wm_OWCharB
+	LSR
+	LSR
+	TAX
+	LDA wm_MapData.MarioMap,X
+	TAX
+	LDA.L DATA_04DC02,X
+	STA wm_LvHeadTileset
+	LDA #$11
+	STA wm_CurSprGfx
+	LDA #$07
+	STA wm_LevelHeaderMode
+	LDA #$03
+	STA wm_IsVerticalLvl
+	REP #$10
+	LDX #$0000
+	TXA
+-	JSR CODE_04D770
+	CPX #$01B0
+	BNE -
+	REP #$30
+	LDA.W #DATA_05D000
+	STA m0
+	LDX #$0000
+-	LDA m0
+	STA wm_Map16TilePtrs,X
+	LDA m0
+	CLC
+	ADC #$0008
+	STA m0
+	INX
+	INX
+	CPX #$0400
+	BNE -
+	PHB
+	LDA #$07FF
+	LDX.W #DATA_0CF7DF
+	LDY.W #(wm_Map16PageL)&$FFFF
+	MVN wm_Map16PageL>>16,:DATA_0CF7DF
+	PLB
+	JSR CODE_04D7F2
+	SEP #$30
+	RTL
+
+CODE_04DC6A:
+	SEP #$30
+	JSR CODE_04DD40
+	REP #$20
+	LDA.W #DATA_04A533
+	STA m0
+	SEP #$30
+	LDA #:DATA_04A533
+	STA m2
+	REP #$10
+	LDY #$4000
+	STY m14
+	LDY #$0000
+	TYX
+	JSR CODE_04DABA
+	REP #$20
+	LDA.W #DATA_04C02B
+	STA m0
+	SEP #$20
+	LDX #$0001
+	LDY #$0000
+	JSR CODE_04DABA
+	SEP #$30
+	LDA #$00
+	STA m15
+-	JSR CODE_04E453
+	INC m15
+	LDA m15
+	CMP #$6F
+	BNE -
+	RTS
+
+UNK_04DCAE:	.DB $80,$40,$20,$10,$08,$04,$02,$01 ; unused bits
+
+CODE_04DCB6:
+	PHP
+	REP #$10
+	SEP #$20
+	LDX.W #DATA_05D000
+	STX wm_Bg1Ptr
+	LDA #:DATA_05D000
+	STA wm_Bg1Ptr+2
+	LDX #$0000
+	STX m0
+	LDA wm_OWSubmapSwitchIndex
+	DEC A
+	STA m1
+	REP #$20
+	LDA wm_OWCharB
+	LSR
+	LSR
+	AND #$00FF
+	TAX
+	SEP #$20
+	LDA wm_MapData.MarioMap,X
+	BEQ _f
+	LDA m1
+	CLC
+	ADC #$04
+	STA m1
+__	LDX m0
+	LDA wm_Map16PageL,X
+	STA m2
+	REP #$20
+	LDA wm_Map16PageH,X
+	STA m3
+	LDA m2
+	ASL
+	ASL
+	ASL
+	TAY
+	LDA m0
+	AND #$00FF
+	ASL
+	ASL
+	PHA
+	AND #$003F
+	STA m2
+	PLA
+	ASL
+	AND #$0F80
+	ORA m2
+	TAX
+	LDA [wm_Bg1Ptr],Y
+	STA wm_Map16PageL.15,X
+	INY
+	INY
+	LDA [wm_Bg1Ptr],Y
+	STA wm_Map16PageL.15+$40,X
+	INY
+	INY
+	LDA [wm_Bg1Ptr],Y
+	STA wm_Map16PageL.15+$02,X
+	INY
+	INY
+	LDA [wm_Bg1Ptr],Y
+	STA wm_Map16PageL.15+$40+$02,X
+	SEP #$20
+	INC m0
+	LDA m0
+	AND #$FF
+	BNE _b
+	INC wm_OWSubmapSwitchIndex
+	PLP
+	RTS
+
+CODE_04DD40:
+	REP #$10
+	SEP #$20
+	LDY.W #DATA_0C8D00
+	STY m2
+	LDA #:DATA_0C8D00
+	STA m4
+	LDX #$0000
+	TXY
+	JSR CODE_04DD57
+	SEP #$30
+	RTS
+
+CODE_04DD57:
+	SEP #$20
+	LDA [m2],Y
+	INY
+	STA m5
+	AND #$80
+	BNE CODE_04DD71
+-	LDA [m2],Y
+	STA wm_OW_L2EventTiles,X
+	INY
+	INX
+	DEC m5
+	BPL -
+	JMP _04DD83
+
+CODE_04DD71:
+	LDA m5
+	AND #$7F
+	STA m5
+	LDA [m2],Y
+-	STA wm_OW_L2EventTiles,X
+	INX
+	DEC m5
+	BPL -
+	INY
+_04DD83:
+	REP #$20
+	LDA [m2],Y
+	CMP #$FFFF
+	BNE CODE_04DD57
+	RTS
+
+DATA_04DD8D:	.INCBIN "overworld/layer2/events/entries.bin"
+
+DATA_04E359:	.INCBIN "overworld/layer2/events/pointers.bin"
+
+DATA_04E44B:	.DB $80,$40,$20,$10,$08,$04,$02,$01
+
+CODE_04E453:
+	SEP #$30
+	LDA m15
+	AND #$07
+	TAX
+	LDA m15
+	LSR
+	LSR
+	LSR
+	TAY
+	LDA wm_MapData.OwEventFlags,Y
+	AND.L DATA_04E44B,X
+	BNE CODE_04E46A
+	RTS
+
+CODE_04E46A:
+	LDA m15
+	ASL
+	TAX
+	REP #$20
+	LDA.L DATA_04E359,X
+	STA wm_OWFirstEventTile
+	LDA.L DATA_04E359+2,X
+	STA wm_OWLastEventTile
+	CMP wm_OWFirstEventTile
+	BEQ +
+-	JSR CODE_04E496
+	REP #$20
+	INC wm_OWFirstEventTile
+	LDA wm_OWFirstEventTile
+	CMP wm_OWLastEventTile
+	BNE -
++	SEP #$30
+	RTS
+
+CODE_04E496:
+	REP #$30
+	LDA wm_OWFirstEventTile
+	ASL
+	ASL
+	TAX
+	LDA.L DATA_04DD8D,X
+	TAY
+	LDA.L DATA_04DD8D+2,X
+	STA m4
+_04E4A9:
+	SEP #$20
+	LDA #$7F
+	STA m8
+	LDA #:DATA_0C8000
+	STA m11
+	REP #$20
+	LDA #$0000
+	STA m6
+	LDA #DATA_0C8000
+	STA m9
+	CPY #$0900
+	BCC CODE_04E4CA
+	JSR CODE_04E4D0
+	JMP _04E4CD
+
+CODE_04E4CA:
+	JSR CODE_04E520
+_04E4CD:
+	SEP #$30
+	RTS
+
+CODE_04E4D0:
+	LDA.W #$0001
+	STA m0
+-	LDX m4
+	LDA.W #$0001
+	STA m12
+--	SEP #$20
+	LDA [m9],Y
+	STA wm_OW_L2Tiles,X
+	INX
+	LDA [m6],Y
+	STA wm_OW_L2Tiles,X
+	INY
+	INX
+	REP #$20
+	TXA
+	AND #$003F
+	BNE +
+	DEX
+	TXA
+	AND #$FFC0
+	CLC
+	ADC #$0800
+	TAX
++	DEC m12
+	BPL --
+	LDA m4
+	TAX
+	CLC
+	ADC #$0040
+	STA m4
+	AND #$07C0
+	BNE +
+	TXA
+	AND #$F83F
+	CLC
+	ADC #$1000
+	STA m4
++	DEC m0
+	BPL -
+	RTS
+
+CODE_04E520:
+	LDA #$0005
+	STA m0
+-	LDX m4
+	LDA #$0005
+	STA m12
+--	SEP #$20
+	LDA [m9],Y
+	STA wm_OW_L2Tiles,X
+	INX
+	LDA [m6],Y
+	STA wm_OW_L2Tiles,X
+	INY
+	INX
+	REP #$20
+	TXA
+	AND #$003F
+	BNE +
+	DEX
+	TXA
+	AND #$FFC0
+	CLC
+	ADC #$0800
+	TAX
++	DEC m12
+	BPL --
+	LDA m4
+	TAX
+	CLC
+	ADC #$0040
+	STA m4
+	AND #$07C0
+	BNE +
+	TXA
+	AND #$F83F
+	CLC
+	ADC #$1000
+	STA m4
++	DEC m0
+	BPL -
+	RTS
+
+CODE_04E570:
+	LDA wm_OWEventPtr
+	JSL ExecutePtr
+
+Ptrs04E577:
+	.DW CODE_04E5EE
+	.DW CODE_04EBEB
+	.DW CODE_04E6D3
+	.DW CODE_04E6F9
+	.DW CODE_04EAA4
+	.DW CODE_04EC78
+	.DW CODE_04EBEB
+	.DW CODE_04E9EC
+
+DATA_04E587:
+	.DB $20,$52,$22,$DA,$28,$58,$24,$C0
+	.DB $24,$94,$23,$42,$28,$94,$2A,$98
+	.DB $25,$0E,$25,$52,$25,$C4,$2A,$DE
+	.DB $2A,$98,$28,$44,$2C,$50,$2C,$0C
+
+DATA_04E5A7:	.DB $77,$79,$58,$4C,$A6
+
+DATA_04E5AC:	.DB $85,$86,$00,$10,$00
+
+DATA_04E5B1:	.DB $85,$86,$81,$81,$81
+
+DATA_04E5B6:
+	.DB $19,$04,$BD,$00,$1C,$06,$30,$01
+	.DB $2A,$01,$D1,$00,$2A,$06,$AC,$06
+	.DB $47,$05,$59,$05,$72,$05,$BF,$02
+	.DB $AC,$02,$12,$02,$18,$03,$06,$03
+
+DATA_04E5D6:
+	.DB $06,$0F,$1C,$21,$24,$28,$29,$37
+	.DB $40,$41,$43,$4A,$4D,$02,$61,$35
+
+DATA_04E5E6:	.DB $58,$59,$5D,$63,$77,$79,$7E,$80
+
+CODE_04E5EE:
+	LDA wm_LevelEndFlag
+	CMP.B #$02
+	BNE +
+	INC wm_OWLvEndEvent
++	LDA wm_CreditsEnemyNum
+	BEQ +
+	LDA wm_OWLvEndEvent
+	CMP.B #$FF
+	BEQ +
+	LDA wm_OWLvEndEvent
+	AND.B #$07
+	TAX
+	LDA wm_OWLvEndEvent
+	LSR
+	LSR
+	LSR
+	TAY
+	LDA wm_MapData.OwEventFlags,Y
+	AND.L DATA_04E44B,X
+	BEQ CODE_04E640
++	LDX #$07
+_04E61C:
+	LDA.W DATA_04E5E6,X
+	CMP wm_OWPlayerTile
+	BNE CODE_04E632
+	INC wm_OWProcessPtr
+	LDA.B #$E0
+	STA wm_LevelEndFlag
+	LDA.B #$0F
+	STA wm_KeepGameActive
+	RTS
+
+CODE_04E632:
+	DEX
+	BPL _04E61C
+	LDA.B #$05
+	STA wm_OWProcessPtr
+	LDA.B #$80
+	STA wm_LevelEndFlag
+	RTS
+
+CODE_04E640:
+	INC wm_OWEventPtr
+	LDA wm_OWLvEndEvent
+	JSR CODE_04E677
+	TYA
+	ASL
+	ASL
+	ASL
+	ASL
+	STA wm_OWDestructXPos
+	TYA
+	AND.B #$F0
+	STA wm_OWDestructYPos
+	LDA.B #$28
+	STA wm_OWEventTileSize
+	LDA wm_TransLvNum
+	CMP.B #$18
+	BNE +
+	LDA.B #$FF
+	STA wm_OWBowserTimer
++	LDA wm_OWEventPtr
+	CMP.B #$02
+	BEQ +
+	LDA.B #$16
+	STA wm_SoundCh3
++	SEP #$30
+	RTS
+
+CODE_04E677:
+	SEP #$30
+	LDX #$17
+-	CMP.L DATA_04E5D6,X
+	BEQ CODE_04E68A
+	DEX
+	BPL -
+_04E684:
+	LDA #$02
+	STA wm_OWEventPtr
+	RTS
+
+CODE_04E68A:
+	STX wm_LvDestructionTile
+	TXA
+	ASL
+	TAX
+	LDA.B #wm_Map16PageL>>16
+	STA m12
+	REP #$30
+	LDA.W #(wm_Map16PageL)&$FFFF
+	STA m10
+	LDA.L DATA_04E5B6,X
+	TAY
+	SEP #$20
+	LDX #$0004
+	LDA [m10],Y
+-	CMP.L DATA_04E5A7,X
+	BEQ CODE_04E6B3
+	DEX
+	BPL -
+	JMP _04E684
+
+CODE_04E6B3:
+	TXA
+	STA wm_LvDestructionIndex
+	CPX #$0003
+	BMI +
+	LDA.L DATA_04E5AC,X
+	STA [m10],Y
+	REP #$20
+	TYA
+	CLC
+	ADC #$0010
+	TAY
++	SEP #$20
+	LDA.L DATA_04E5B1,X
+	STA [m10],Y
+	RTS
+
+CODE_04E6D3:
+	INC wm_OWEventPtr
+	LDA wm_OWLvEndEvent
+	ASL
+	TAX
+	REP #$20
+	LDA.L DATA_04E359,X
+	STA wm_OWFirstEventTile
+	LDA.L DATA_04E359+2,X
+	STA wm_OWLastEventTile
+	CMP wm_OWFirstEventTile
+	SEP #$20
+	BNE +
+	INC wm_OWEventPtr
+	INC wm_OWEventPtr
++	RTS
+
+CODE_04E6F9:
+	JSR CODE_04EA62
+	LDA #$7F
+	STA m14
+	REP #$30
+	LDA wm_OWFirstEventTile
+	ASL
+	ASL
+	TAX
+	LDA.L DATA_04DD8D,X
+	STA wm_OWEventTileSize
+	LDA.L DATA_04DD8D+2,X
+	STA m0
+	AND #$1FFF
+	LSR
+	CLC
+	ADC #$3000
+	XBA
+	STA m2
+	LDA m0
+	LSR
+	LSR
+	LSR
+	SEP #$20
+	AND #$F8
+	STA wm_OWDestructYPos
+	LDA m0
+	AND #$3E
+	ASL
+	ASL
+	STA wm_OWDestructXPos
+	REP #$20
+	LDA #$4000
+	STA m12
+	LDA #$EFFF
+	STA m10
+	LDA wm_OWEventTileSize
+	CMP #$0900
+	BCC CODE_04E74F
+	JSR CODE_04E76C
+	JMP _04E752
+
+CODE_04E74F:
+	JSR CODE_04E824
+_04E752:
+	LDA #$00FF
+	STA wm_ImageTable,X
+	TXA
+	STA wm_ImageIndex
+	JSR CODE_04E496
+	SEP #$30
+	LDA #$15
+	STA wm_SoundCh3
+	INC wm_OWEventPtr
+	RTS
+
+CODE_04E76C:
+	LDA.W #$0001
+	STA m6
+	LDA wm_ImageIndex
+	TAX
+_04E776:
+	LDA m2
+	STA wm_ImageTable,X
+	INX
+	INX
+	LDY.W #$0300
+	LDA m3
+	AND.W #$001F
+	STA m8
+	LDA.W #$0020
+	SEC
+	SBC m8
+	STA m8
+	CMP.W #$0001
+	BNE +
+	LDA m8
+	ASL
+	DEC A
+	XBA
+	TAY
++	TYA
+	STA wm_ImageTable,X
+	INX
+	INX
+	LDA.W #$0001
+	STA m4
+	LDY m0
+-	LDA [m12],Y
+	AND m10
+	STA wm_ImageTable,X
+	INX
+	INX
+	INY
+	INY
+	TYA
+	AND.W #$003F
+	BNE +
+	LDA m4
+	BEQ +
+	DEY
+	TYA
+	AND.W #$FFC0
+	CLC
+	ADC.W #$0800
+	TAY
+	LDA m2
+	XBA
+	AND.W #$3BE0
+	CLC
+	ADC.W #$0400
+	XBA
+	STA wm_ImageTable,X
+	INX
+	INX
+	LDA m8
+	ASL
+	DEC A
+	XBA
+	STA wm_ImageTable,X
+	INX
+	INX
++	DEC m4
+	BPL -
+	LDA m2
+	XBA
+	CLC
+	ADC.W #$0020
+	XBA
+	STA m2
+	LDA m0
+	TAY
+	CLC
+	ADC.W #$0040
+	STA m0
+	AND.W #$07C0
+	BNE +
+	TYA
+	AND.W #$F83F
+	CLC
+	ADC.W #$1000
+	STA m0
+	LDA m2
+	XBA
+	SEC
+	SBC.W #$0020
+	AND.W #$341F
+	CLC
+	ADC.W #$0800
+	XBA
+	STA m2
++	DEC m6
+	BMI Return04E823
+	JMP _04E776
+
+Return04E823:
+	RTS
+
+CODE_04E824:
+	LDA.W #$0005
+	STA m6
+	LDA wm_ImageIndex
+	TAX
+_04E82E:
+	LDA m2
+	STA wm_ImageTable,X
+	INX
+	INX
+	LDY.W #$0B00
+	LDA m3
+	AND.W #$001F
+	STA m8
+	LDA.W #$0020
+	SEC
+	SBC m8
+	STA m8
+	CMP.W #$0006
+	BCS +
+	LDA m8
+	ASL
+	DEC A
+	XBA
+	TAY
+	LDA.W #$0006
+	SEC
+	SBC m8
+	STA m8
++	TYA
+	STA wm_ImageTable,X
+	INX
+	INX
+	LDA.W #$0005
+	STA m4
+	LDY m0
+-	LDA [m12],Y
+	AND m10
+	STA wm_ImageTable,X
+	INX
+	INX
+	INY
+	INY
+	TYA
+	AND.W #$003F
+	BNE +
+	LDA m4
+	BEQ +
+	DEY
+	TYA
+	AND.W #$FFC0
+	CLC
+	ADC.W #$0800
+	TAY
+	LDA m2
+	XBA
+	AND.W #$3BE0
+	CLC
+	ADC.W #$0400
+	XBA
+	STA wm_ImageTable,X
+	INX
+	INX
+	LDA m8
+	ASL
+	DEC A
+	XBA
+	STA wm_ImageTable,X
+	INX
+	INX
++	DEC m4
+	BPL -
+	LDA m2
+	XBA
+	CLC
+	ADC.W #$0020
+	XBA
+	STA m2
+	LDA m0
+	TAY
+	CLC
+	ADC.W #$0040
+	STA m0
+	AND.W #$07C0
+	BNE +
+	TYA
+	AND.W #$F83F
+	CLC
+	ADC.W #$1000
+	STA m0
+	LDA m2
+	XBA
+	SEC
+	SBC.W #$0020
+	AND.W #$341F
+	CLC
+	ADC.W #$0800
+	XBA
+	STA m2
++	DEC m6
+	BMI Return04E8E3
+	JMP _04E82E
+
+Return04E8E3:
+	RTS
+
+DATA_04E8E4:
+	.DB $06,$06,$06,$06,$06,$06,$06,$06
+	.DB $14,$14,$14,$14,$14,$1D,$1D,$1D
+	.DB $1D,$12,$12,$12,$1C,$2F,$2F,$2F
+	.DB $2F,$2F,$34,$34,$34,$47,$4E,$4E
+	.DB $01,$0F,$24,$24,$6C,$0F,$0F,$54
+	.DB $55,$57,$58,$5D
+
+DATA_04E910:
+	.DB $00,$00,$00,$00,$00,$00,$01,$01
+	.DB $00,$01,$01,$01,$01,$01,$01,$01
+	.DB $00,$01,$01,$00,$00,$01,$01,$01
+	.DB $01,$01,$01,$01,$01,$00,$01,$00
+	.DB $00,$01,$01,$01,$01,$01,$00,$00
+	.DB $00,$00,$00,$00
+
+DATA_04E93C:
+	.DB $15,$02,$35,$02,$45,$02,$55,$02
+	.DB $65,$02,$75,$02,$14,$11,$94,$10
+	.DB $A9,$00,$A4,$05,$24,$05,$28,$07
+	.DB $A4,$06,$A8,$01,$AC,$01,$B0,$01
+	.DB $3C,$00,$00,$29,$80,$28,$10,$05
+	.DB $54,$01,$30,$18,$B0,$18,$2E,$19
+	.DB $2A,$19,$26,$19,$24,$18,$20,$18
+	.DB $1C,$18,$97,$05,$EC,$2A,$7B,$05
+	.DB $12,$02,$94,$31,$A0,$32,$20,$33
+	.DB $16,$1D,$14,$31,$25,$06,$F0,$01
+	.DB $F0,$01,$04,$03,$04,$03,$27,$02
+
+DATA_04E994:
+	.DB $68,$00,$24,$00,$24,$00,$25,$00
+	.DB $00,$00,$81,$00,$38,$09,$28,$09
+	.DB $66,$00,$9C,$09,$28,$09,$F8,$09
+	.DB $FC,$09,$98,$09,$98,$09,$28,$09
+	.DB $66,$00,$38,$09,$28,$09,$66,$00
+	.DB $68,$00,$80,$0A,$84,$0A,$88,$0A
+	.DB $98,$09,$98,$09,$94,$09,$98,$09
+	.DB $8C,$0A,$66,$00,$84,$03,$66,$00
+	.DB $79,$00,$A8,$0A,$38,$09,$38,$09
+	.DB $A0,$09,$30,$0A,$69,$00,$5F,$00
+	.DB $5F,$00,$5F,$00,$5F,$00,$5F,$00
+
+CODE_04E9EC:
+	LDA wm_OWLvEndEvent
+	STA m15
+_04E9F1:
+	LDX #$2B
+-	CMP.L DATA_04E8E4,X
+	BEQ CODE_04EA25
+_04E9F9:
+	DEX
+	BPL -
+	LDA wm_OWEventPtr
+	BEQ +
+	STZ wm_OWEventPtr
+	INC wm_OWProcessPtr
+	LDA wm_OWLvEndEvent
+	AND #$07
+	TAX
+	LDA wm_OWLvEndEvent
+	LSR
+	LSR
+	LSR
+	TAY
+	LDA wm_MapData.OwEventFlags,Y
+	ORA.L DATA_04E44B,X
+	STA wm_MapData.OwEventFlags,Y
+	INC wm_MapData.EventsTriggered
+	STZ wm_CreditsEnemyNum
++	RTS
+
+CODE_04EA25:
+	PHX
+	LDA.L DATA_04E910,X
+	STA m2
+	TXA
+	ASL
+	TAX
+	REP #$20
+	LDA.L DATA_04E994,X
+	STA m0
+	LDA.L DATA_04E93C,X
+	STA m4
+	LDA m2
+	AND #$0001
+	BEQ CODE_04EA4E
+	REP #$10
+	LDY m0
+	JSR _04E4A9
+	JMP _04EA5A
+
+CODE_04EA4E:
+	SEP #$20
+	REP #$10
+	LDX m4
+	LDA m0
+	STA wm_Map16PageL,X
+_04EA5A:
+	SEP #$30
+	PLX
+	LDA m15
+	JMP _04E9F9
+
+CODE_04EA62:
+	STZ wm_ColorFadeTimer
+	STZ wm_ColorFadeEndDir
+	LDX #$6F
+-	LDA wm_Palette,X
+	STA wm_PaletteCopy.2.Col,X
+	STZ wm_PaletteCopy.59.Col,X
+	DEX
+	BPL -
+	LDX #$6F
+-	LDY #$10
+--	LDA wm_Palette.65.Col,X
+	STA wm_PaletteCopy.2.Col,X
+	DEX
+	DEY
+	BNE --
+	TXA
+	SEC
+	SBC #$10
+	TAX
+	BPL -
+_04EA8B:
+	REP #$20
+	LDA #$0070
+	STA wm_PaletteCopy
+	LDA #$C070
+	STA wm_PaletteCopy.58.Col
+	SEP #$20
+	STZ wm_PaletteCopy.115.Col
+	LDA #$03
+	STA wm_PalUploadIndex
+	RTS
+
+CODE_04EAA4:
+	LDA wm_ColorFadeTimer
+	CMP #$40
+	BCC CODE_04EAC9
+	INC wm_OWEventPtr
+	JSR CODE_04EE30
+	JSR CODE_04E496
+	REP #$20
+	INC wm_OWFirstEventTile
+	LDA wm_OWFirstEventTile
+	CMP wm_OWLastEventTile
+	SEP #$20
+	BCS +
+	LDA #$03
+	STA wm_OWEventPtr
++	RTS
+
+CODE_04EAC9:
+	JSR CODE_04EC67
+	REP #$30
+	LDY #$008C
+	LDX #$0006
+	LDA wm_OWEventTileSize
+	CMP #$0900
+	BCC +
+	LDY #$000C
+	LDX #$0002
++	STX m5
+	TAX
+	SEP #$20
+-	LDA m5
+	STA m3
+	LDA m0
+--	STA m2
+	LDA m1
+	STA wm_OamSlot.21.YPos,Y
+	LDA.L DATA_0C8000,X
+	STA wm_OamSlot.21.Tile,Y
+	LDA wm_OW_L2EventTiles,X
+	AND #$C0
+	STA m4
+	LDA wm_OW_L2EventTiles,X
+	AND #$1C
+	LSR
+	ORA m4
+	ORA #$11
+	STA wm_OamSlot.21.Prop,Y
+	LDA m2
+	STA wm_OamSlot.21.XPos,Y
+	CLC
+	ADC #$08
+	INX
+	DEY
+	DEY
+	DEY
+	DEY
+	DEC m3
+	BNE --
+	LDA m1
+	CLC
+	ADC #$08
+	STA m1
+	CPY #$FFFC
+	BNE -
+	SEP #$10
+	LDX #$23
+-	STZ wm_OamSize.21,X
+	DEX
+	BPL -
+	LDY #$08
+	LDX wm_OWCharA
+	LDA wm_MapData.MarioMap,X
+	CMP #$03
+	BNE +
+	LDY #$01
++	STY wm_8A
+-	LDA wm_ColorFadeTimer
+	JSL CODE_00B006
+	DEC wm_8A
+	BNE -
+	JMP _04EA8B
+
+DATA_04EB56:
+	.DB $F5,$11,$F2,$15,$F5,$11,$F3,$14
+	.DB $F5,$11,$F3,$14,$F6,$10,$F4,$13
+	.DB $F7,$0F,$F5,$12,$F8,$0E,$F7,$11
+	.DB $FA,$0D,$F9,$10,$FC,$0C,$FB,$0D
+	.DB $FF,$0A,$FE,$0B,$01,$07,$01,$07
+	.DB $00,$08,$00,$08
+
+DATA_04EB82:
+	.DB $F8,$F8,$11,$12,$F8,$F8,$10,$11
+	.DB $F8,$F8,$10,$11,$F9,$F9,$0F,$10
+	.DB $FA,$FA,$0E,$0F,$FB,$FB,$0C,$0D
+	.DB $FC,$FC,$0B,$0B,$FE,$FE,$0A,$0A
+	.DB $00,$00,$08,$08,$01,$01,$07,$07
+	.DB $00,$00,$08,$08
+
+DATA_04EBAE:
+	.DB $F6,$B6,$76,$36,$F6,$B6,$76,$36
+	.DB $36,$76,$B6,$F6,$36,$76,$B6,$F6
+	.DB $36,$36,$36,$36,$36,$36,$36,$36
+	.DB $36,$36,$36,$36,$36,$36,$36,$36
+	.DB $36,$36,$36,$36,$36,$36,$36,$36
+	.DB $30,$70,$B0,$F0
+
+DATA_04EBDA:	.DB $22,$23,$32,$33,$32,$23,$22
+
+DATA_04EBE1:
+	.DB $73,$73,$72,$72,$5F,$5F,$28,$28
+	.DB $28,$28
+
+CODE_04EBEB:
+	DEC wm_OWEventTileSize
+	BPL CODE_04EBF4
+	INC wm_OWEventPtr
+	RTS
+
+CODE_04EBF4:
+	LDA wm_OWEventTileSize
+	LDY wm_OWEventPtr
+	CPY #$01
+	BEQ CODE_04EC17
+	CMP #$10
+	BNE +
+	PHA
+	JSR CODE_04ED83
+	PLA
++	LSR
+	LSR
+	TAX
+	LDA.W DATA_04EBDA,X
+	STA m2
+	JSR CODE_04EC67
+	LDX #$28
+	JMP _04EC2E
+
+CODE_04EC17:
+	CMP #$18
+	BNE +
+	PHA
+	JSR CODE_04EEAA
+	PLA
++	AND #$FC
+	TAX
+	LSR
+	LSR
+	TAY
+	LDA DATA_04EBE1,Y
+	STA m2
+	JSR CODE_04EC67
+_04EC2E:
+	LDA #$03
+	STA m3
+	LDY #$00
+-	LDA m0
+	CLC
+	ADC.W DATA_04EB56,X
+	STA wm_ExOamSlot.33.XPos,Y
+	LDA m1
+	CLC
+	ADC.W DATA_04EB82,X
+	STA wm_ExOamSlot.33.YPos,Y
+	LDA m2
+	STA wm_ExOamSlot.33.Tile,Y
+	LDA.W DATA_04EBAE,X
+	STA wm_ExOamSlot.33.Prop,Y
+	INY
+	INY
+	INY
+	INY
+	INX
+	DEC m3
+	BPL -
+	STZ wm_ExOamSize.33
+	STZ wm_ExOamSize.34
+	STZ wm_ExOamSize.35
+	STZ wm_ExOamSize.36
+	RTS
+
+CODE_04EC67:
+	LDA wm_OWDestructXPos
+	SEC
+	SBC wm_Bg2HOfs
+	STA m0
+	LDA wm_OWDestructYPos
+	CLC
+	SBC wm_Bg2VOfs
+	STA m1
+	RTS
+
+CODE_04EC78:
+	LDA.B #wm_Map16PageL>>16
+	STA m15
+	REP #$30
+	LDA.W #(wm_Map16PageL)&$FFFF
+	STA m13
+	LDA wm_OWLvEndEvent
+	AND #$00FF
+	ASL
+	TAX
+	LDA.L DATA_04D85D,X
+	TAY
+	LDX #$0015
+	SEP #$20
+	LDA [m13],Y
+-	CMP.L DATA_04DA1D,X
+	BEQ CODE_04ECA8
+	DEX
+	BPL -
+	SEP #$10
+	LDA #$07
+	STA wm_OWEventPtr
+	RTS
+
+CODE_04ECA8:
+	SEP #$30
+	LDA #$01
+	STA wm_SoundCh3
+	INC wm_OWEventPtr
+	LDA wm_OWLvEndEvent
+	AND #$FF
+	ASL
+	TAX
+	LDA.L DATA_04D85D,X
+	ASL
+	ASL
+	ASL
+	ASL
+	STA wm_OWDestructXPos
+	LDA.L DATA_04D85D,X
+	AND #$F0
+	STA wm_OWDestructYPos
+	LDA #$1C
+	STA wm_OWEventTileSize
+	RTS
+
+DATA_04ECD3:
+	.DB $86,$99,$86,$19,$86,$D9,$86,$59
+	.DB $96,$99,$96,$19,$96,$D9,$96,$59
+	.DB $86,$9D,$86,$1D,$86,$DD,$86,$5D
+	.DB $96,$9D,$96,$1D,$96,$DD,$96,$5D
+	.DB $86,$99,$86,$19,$86,$D9,$86,$59
+	.DB $96,$99,$96,$19,$96,$D9,$96,$59
+	.DB $86,$9D,$86,$1D,$86,$DD,$86,$5D
+	.DB $96,$9D,$96,$1D,$96,$DD,$96,$5D
+	.DB $88,$15,$98,$15,$89,$15,$99,$15
+	.DB $A4,$11,$B4,$11,$A5,$11,$B5,$11
+	.DB $22,$11,$90,$11,$22,$11,$91,$11
+	.DB $C2,$11,$D2,$11,$C3,$11,$D3,$11
+	.DB $A6,$11,$B6,$11,$A7,$11,$B7,$11
+	.DB $82,$19,$92,$19,$83,$19,$93,$19
+	.DB $C8,$19,$F8,$19,$C9,$19,$F9,$19
+	.DB $80,$1C,$90,$1C,$81,$1C,$90,$5C
+	.DB $80,$14,$90,$14,$81,$14,$90,$54
+	.DB $A2,$11,$B2,$11,$A3,$11,$B3,$11
+	.DB $82,$1D,$92,$1D,$83,$1D,$93,$1D
+	.DB $86,$99,$86,$19,$86,$D9,$86,$59
+	.DB $86,$99,$86,$19,$86,$D9,$86,$59
+	.DB $A8,$11,$B8,$11,$A9,$11,$B9,$11
+
+CODE_04ED83:
+	LDA.B #wm_Map16PageL>>16
+	STA m15
+	REP #$30
+	LDA.W #(wm_Map16PageL)&$FFFF
+	STA m13
+	LDA wm_OWLvEndEvent
+	AND #$00FF
+	ASL
+	TAX
+	LDA.L DATA_04D85D,X
+	TAY
+	LDX #$0015
+	SEP #$20
+	LDA [m13],Y
+-	CMP.L DATA_04DA1D,X
+	BEQ +
+	DEX
+	BNE -
++	REP #$30
+	STX m14
+	LDA wm_OWLvEndEvent
+	AND #$00FF
+	ASL
+	TAX
+	LDA.L DATA_04D93D,X
+	STA m0
+	LDA.L DATA_04D85D,X
+	TAX
+	PHX
+	LDX m14
+	SEP #$20
+	LDA.L DATA_04DA33,X
+	PLX
+	STA wm_Map16PageL,X
+	LDA #:DATA_04ECD3
+	STA m12
+	REP #$20
+	LDA.W #DATA_04ECD3
+	STA m10
+	LDA m14
+	ASL
+	ASL
+	ASL
+	TAY
+	LDA wm_ImageIndex
+	TAX
+_04EDE6:
+	LDA m0
+	STA wm_ImageTable,X
+	CLC
+	ADC #$2000
+	STA wm_ImageTable.5.ImgL,X
+	LDA #$0300
+	STA wm_ImageTable.2.ImgL,X
+	STA wm_ImageTable.6.ImgL,X
+	LDA [m10],Y
+	STA wm_ImageTable.3.ImgL,X
+	INY
+	INY
+	LDA [m10],Y
+	STA wm_ImageTable.7.ImgL,X
+	INY
+	INY
+	LDA [m10],Y
+	STA wm_ImageTable.4.ImgL,X
+	INY
+	INY
+	LDA [m10],Y
+	STA wm_ImageTable.8.ImgL,X
+	LDA #$00FF
+	STA wm_ImageTable.9.ImgL,X
+	TXA
+	CLC
+	ADC #$0010
+	STA wm_ImageIndex
+	SEP #$30
+	RTS
+
+CODE_04EE30:
+	SEP #$20
+	LDA #$7F
+	STA m14
+	REP #$30
+	LDA wm_OWFirstEventTile
+	ASL
+	ASL
+	TAX
+	LDA.L DATA_04DD8D+2,X
+	STA m0
+	AND #$1FFF
+	LSR
+	CLC
+	ADC #$3000
+	XBA
+	STA m2
+	LDA #$4000
+	STA m12
+	LDA #$FFFF
+	STA m10
+	LDA.L DATA_04DD8D,X
+	CMP #$0900
+	BCC CODE_04EE68
+	JSR CODE_04E76C
+	JMP _04EE6B
+
+CODE_04EE68:
+	JSR CODE_04E824
+_04EE6B:
+	LDA #$00FF
+	STA wm_ImageTable,X
+	TXA
+	STA wm_ImageIndex
+	SEP #$30
+	RTS
+
+DATA_04EE7A:
+	.DB $22,$01,$82,$1C,$22,$01,$83,$1C
+	.DB $22,$01,$82,$14,$22,$01,$83,$14
+	.DB $EA,$01,$EA,$01,$EA,$C1,$EA,$C1
+	.DB $EA,$01,$EA,$01,$EA,$C1,$EA,$C1
+	.DB $22,$01,$22,$01,$22,$01,$22,$01
+	.DB $8A,$15,$9A,$15,$8B,$15,$9B,$15
+
+CODE_04EEAA:
+	SEP #$30
+	LDA.B #wm_Map16PageL>>16
+	STA m15
+	LDA #:DATA_04EE7A
+	STA m12
+	REP #$30
+	LDA.W #(wm_Map16PageL)&$FFFF
+	STA m13
+	LDA.W #DATA_04EE7A
+	STA m10
+	LDA wm_LvDestructionTile
+	AND #$00FF
+	ASL
+	TAX
+	LDA.L DATA_04E587,X
+	STA m0
+	LDA wm_ImageIndex
+	TAX
+	LDA wm_LvDestructionIndex
+	AND #$00FF
+	CMP #$0003
+	BMI +
+	ASL
+	ASL
+	ASL
+	TAY
+	LDA m0
+	STA wm_ImageTable,X
+	CLC
+	ADC #$2000
+	STA wm_ImageTable.5.ImgL,X
+	XBA
+	CLC
+	ADC #$0020
+	XBA
+	STA m0
+	LDA #$0300
+	STA wm_ImageTable.2.ImgL,X
+	STA wm_ImageTable.6.ImgL,X
+	LDA [m10],Y
+	STA wm_ImageTable.3.ImgL,X
+	INY
+	INY
+	LDA [m10],Y
+	STA wm_ImageTable.7.ImgL,X
+	INY
+	INY
+	LDA [m10],Y
+	STA wm_ImageTable.4.ImgL,X
+	INY
+	INY
+	LDA [m10],Y
+	STA wm_ImageTable.8.ImgL,X
+	TXA
+	CLC
+	ADC #$0010
+	TAX
++	LDA wm_LvDestructionIndex
+	AND #$00FF
+	CMP #$0002
+	BPL CODE_04EF38
+	ASL
+	ASL
+	ASL
+	TAY
+	BRA _04EF3B
+
+CODE_04EF38:
+	LDY #$0028
+_04EF3B:
+	JMP _04EDE6

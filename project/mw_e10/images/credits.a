@@ -1,0 +1,18 @@
+.INCDIR "images/ending"
+
+EndingScene:
+@1:		.INCBIN "1/layer3.bin"
+@2:		.INCBIN "2/layer3.bin"
+@3:		.INCBIN "3/layer3.bin"
+@4:		.INCBIN "4/layer3.bin"
+@5:		.INCBIN "5/layer3.bin"
+@6:		.INCBIN "6/layer3.bin"
+@7:		.INCBIN "7/layer3.bin"
+@8:		.INCBIN "8/layer3.bin"
+@9:		.INCBIN "9/layer3.bin"
+@10:	.INCBIN "10/layer3.bin"
+@11:	.INCBIN "11/layer3.bin"
+@12:	.INCBIN "12/layer3.bin"
+@13:	.INCBIN "13/layer3.bin"
+
+.INCDIR ""

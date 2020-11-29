@@ -1,0 +1,26 @@
+@ECHO OFF
+
+CHOICE /C CA /M "Create patch or apply patch"
+
+IF %ERRORLEVEL% == 1 GOTO CREATE_PATCH
+IF %ERRORLEVEL% == 2 GOTO APPLY_PATCH
+
+:CREATE_PATCH
+SET /P ORIGINAL=Original file: 
+SET /P MODIFIED=Modified file: 
+
+bin\diff %ORIGINAL% %MODIFIED% > %ORIGINAL%.diff
+
+GOTO EXIT
+
+:APPLY_PATCH
+SET /P ORIGINAL=Original file: 
+SET /P PATCH=Patch file: 
+
+bin\patch %ORIGINAL% %PATCH%
+
+GOTO EXIT
+
+:EXIT
+@PAUSE
+EXIT

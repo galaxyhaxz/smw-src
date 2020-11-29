@@ -1,0 +1,87 @@
+; libhdma_SetChannel
+;
+; Function: enables HDMA on the specified channel.
+; Usage:
+;   arg1 - HDMA channel bit to enable.
+;   arg2 - RAM to set bit instead of hardware register if not -1.
+
+MACRO libhdma_SetChannel(arg1, arg2)
+	LDA #<arg1>
+
+	IF <arg2> == -1
+		TSB !H_DMA_CHANNEL_ENABLE
+	ELSE
+		TSB <arg2>
+	ENDIF
+ENDMACRO
+
+
+; libhdma_SetLayer
+;
+; Function: enables HDMA on the specified layers.
+; Usage:
+;   arg1 - HDMA layer bit to set.
+;   arg2 - RAM to set bit instead of hardware register if not -1.
+
+MACRO libhdma_SetLayer(arg1, arg2)
+	LDA #<arg1>-$10
+	STA !BG_AND_OBJECT_ENABLE_MAIN_SCREEN
+	STZ !BG_AND_OBJECT_ENABLE_SUB_SCREEN
+	LDA #<arg1>
+
+	IF <arg2> == -1
+		STA !ADD_SUBTRACT_SELECT_AND_ENABLE
+	ELSE
+		STA <arg2>
+	ENDIF
+ENDMACRO
+
+
+; libhdma_WriteChannel
+;
+; Function: writes HDMA data to a single channel.
+; Usage:
+;   arg1 - HDMA data to write.
+;   arg2 - HDMA channel to write the data.
+;   arg3 - Boolean; [1] to set 16 bit mode, [0] to keep current mode.
+
+MACRO libhdma_WriteChannel(arg1, arg2, arg3)
+	IF <arg3> == 1
+		REP #$20
+	ENDIF
+
+	LDA #$3200
+	STA !DMA_<arg2>_PARAMS
+	LDA.w #<arg1>
+	STA !DMA_<arg2>_A_ADDRESS_LOW_BYTE
+	LDY.b #<arg1>>>16
+	STY !DMA_<arg2>_A_ADDRESS_BANK
+
+	IF <arg3> == 1
+		SEP #$20
+	ENDIF
+ENDMACRO
+
+
+; libhdma_WriteGradient
+;
+; Function: writes HDMA data to three channels--red, green, and blue.
+; Usage:
+;   arg1 - HDMA data to write [red].
+;   arg2 - HDMA data to write [green].
+;   arg3 - HDMA data to write [blue].
+;   arg4 - HDMA channel to write the data [red].
+;   arg5 - HDMA channel to write the data [green].
+;   arg6 - HDMA channel to write the data [blue].
+;   arg7 - HDMA channel bit to enable the above three channels.
+;   arg8 - RAM to set channel bit on or -1 for hardware register.
+
+MACRO libhdma_WriteGradient(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+	REP #$20
+	%libhdma_WriteChannel(<arg1>, <arg4>, 0)
+	%libhdma_WriteChannel(<arg2>, <arg5>, 0)
+	%libhdma_WriteChannel(<arg3>, <arg6>, 0)
+	SEP #$20
+
+	%libhdma_SetChannel(<arg7>, <arg8>)
+ENDMACRO

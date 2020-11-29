@@ -1,0 +1,1037 @@
+DATA_0DD400:
+	.INCBIN "tilemaps/set_3/073-0FF.bin"
+	.INCBIN "tilemaps/set_3/107-110.bin"
+	.INCBIN "tilemaps/set_3/153-16D.bin"
+
+CODE_0DD990:
+	SEP #$30
+	LDX wm_BlockNum
+	DEX
+	TXA
+	JSL ExecutePtrLong
+
+	.DL CODE_0DA8C3 ; Water (Blue)
+	.DL CODE_0DA8C3 ; Invisible coin blocks
+	.DL CODE_0DA8C3 ; Invisible note blocks
+	.DL CODE_0DA8C3 ; Invisible POW coins
+	.DL CODE_0DA8C3 ; Coins
+	.DL CODE_0DA8C3 ; Walk-through dirt
+	.DL CODE_0DA8C3 ; Water (Other color)
+	.DL CODE_0DA8C3 ; Note blocks
+	.DL CODE_0DA8C3 ; Turn blocks
+	.DL CODE_0DA8C3 ; Coin ? blocks
+	.DL CODE_0DA8C3 ; Throw blocks
+	.DL CODE_0DA8C3 ; Black piranha plants
+	.DL CODE_0DA8C3 ; Cement blocks
+	.DL CODE_0DA8C3 ; Brown blocks
+	.DL CODE_0DAA26 ; Vertical pipes
+	.DL CODE_0DAAB4 ; Horizontal pipes
+	.DL CODE_0DAB0D ; Bullet shooter
+	.DL CODE_0DAB3E ; Slopes
+	.DL CODE_0DB075 ; Ledge edges
+	.DL CODE_0DB1D4 ; Ground ledge
+	.DL CODE_0DB224 ; Midway/Goal point
+	.DL ADDR_0DB336 ; Blue coins
+	.DL CODE_0DB3BD ; Rope/Clouds
+	.DL CODE_0DB3E3 ; Water surface (ani)
+	.DL CODE_0DB3E3 ; Water surface (not ani)
+	.DL CODE_0DB3E3 ; Lava surface (ani)
+	.DL CODE_0DB3E3 ; Net top edge
+	.DL CODE_0DB42D ; Donut bridge
+	.DL CODE_0DB461 ; Net bottom edge
+	.DL CODE_0DB49E ; Net vertical edge
+	.DL CODE_0DB51F ; Vert. Pipe/Bone/Log
+	.DL CODE_0DB547 ; Horiz. Pipe/Bone/Log
+	.DL CODE_0DB1C8 ; Long ground ledge
+	.DL CODE_0DB3E3 ;\
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; | Unused (LM will declare these to be "reserved" and won't let you use them)
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ;/
+	.DL CODE_0DB3E3 ;\
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ; | These could've been tileset specific, but Nintendo didn't have that many ideas for them.
+	.DL CODE_0DB3E3 ; |
+	.DL CODE_0DB3E3 ;/
+	.DL CODE_0DB916 ; Blue switch blocks
+	.DL CODE_0DB91E ; Red switch blocks
+	.DL CODE_0DE135 ; Four-sided edge ground square
+	.DL CODE_0DDF3A ; Multiple canvasses (position hardcoded)
+	.DL CODE_0DDAC8 ; Right facing mud/lava
+	.DL CODE_0DDAF2 ; Mud/lava slopes
+	.DL CODE_0DDCA9 ; Mud/lava with top
+	.DL CODE_0DDCA9 ; Mud/lava tiles
+	.DL CODE_0DDD87 ; Very steep slopes
+	.DL CODE_0DDCEA ; Upside down ledge
+	.DL CODE_0DDD2E ; Solid edges / solid edges with bottoms
+	.DL CODE_0DDD5C ; Solid dirt
+
+CODE_0DDA57:
+	LDY wm_BlockSubScrPos
+	JSR BlockIsPage2
+	LDA #$FE
+	STA [wm_Map16BlkPtrL],Y
+	RTS
+
+DATA_0DDA61:	.DB $7D,$7E,$7F,$80,$81,$82,$83
+
+CODE_0DDA68:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	SEC
+	SBC #$75
+	TAX
+	JSR BlockIsPage1
+	LDA.L DATA_0DDA61,X
+	STA [wm_Map16BlkPtrL],Y
+	RTS
+
+DATA_0DDA7A:	.DB $81,$82,$83
+
+DATA_0DDA7D:	.DB $84,$85,$86
+
+CODE_0DDA80:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	SEC
+	SBC #$7C
+	TAX
+	JSR BlockIsPage1
+	LDA.L DATA_0DDA7A,X
+	STA [wm_Map16BlkPtrL],Y
+	JSR CODE_0DA97D
+	JSR BlockIsPage1
+	LDA.L DATA_0DDA7D,X
+	STA [wm_Map16BlkPtrL],Y
+	RTS
+
+DATA_0DDA9E:
+	.DB $66,$67
+	.DB $68,$69
+
+CODE_0DDAA2:
+	LDY wm_BlockSubScrPos
+	LDX #$00
+	JSR CODE_0DA6B1
+-	JSR BlockIsPage2
+	LDA.L DATA_0DDA9E,X
+	JSR CODE_0DA95B
+	INX
+	TXA
+	AND #$01
+	BNE -
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	CPX #$04
+	BNE -
+	RTS
+
+DATA_0DDAC4:	.DB $5A,$5B
+
+DATA_0DDAC6:	.DB $5B,$5B
+
+CODE_0DDAC8:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	AND #$0F
+	TAX
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	JSR BlockIsPage2
+	LDA.L DATA_0DDAC4,X
+	JMP _0DDAE8
+
+CODE_0DDAE1:
+	JSR BlockIsPage2
+	LDA.L DATA_0DDAC6,X
+_0DDAE8:
+	STA [wm_Map16BlkPtrL],Y
+	JSR CODE_0DA97D
+	DEC m0
+	BPL CODE_0DDAE1
+	RTS
+
+CODE_0DDAF2:
+	LDA wm_BlockSizeType
+	AND #$03
+	JSL ExecutePtrLong
+
+PtrsLong0DDAFA:
+	.DL CODE_0DDB06
+	.DL CODE_0DDB8F
+	.DL ADDR_0DDC02
+	.DL CODE_0DDC61
+
+CODE_0DDB06:
+	LDY wm_BlockSubScrPos
+	LDA #$01
+	STA m2
+	STA m0
+	JSR CODE_0DA6B1
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	INC m0
+_0DDB1B:
+	LDX m2
+	JSR BlockIsPage2
+	LDA #$D2
+	JSR CODE_0DA95B
+	JSR BlockIsPage2
+	LDA #$D3
+	JSR CODE_0DA95B
+	DEX
+	DEX
+	BMI _0DDB50
+_0DDB31:
+	JSR BlockIsPage2
+	LDA #$FB
+	JSR CODE_0DA95B
+	JSR BlockIsPage2
+	LDA #$FF
+	JSR CODE_0DA95B
+	DEX
+	JMP _0DDB4D
+
+CODE_0DDB45:
+	JSR BlockIsPage2
+	LDA #$FF
+	JSR CODE_0DA95B
+_0DDB4D:
+	DEX
+	BPL CODE_0DDB45
+_0DDB50:
+	JSR CODE_0DA6BA
+	INC m2
+	INC m2
+	DEC m0
+	BEQ CODE_0DDB84
+	BPL CODE_0DDB60
+	JMP Return0DDB8E
+
+CODE_0DDB60:
+	LDA wm_BlockSubScrPos
+	CLC
+	ADC #$0E
+	TAY
+	BCC +
+	JSR _0DA987
++	TYA
+	AND #$0F
+	CMP #$0E
+	BMI ++
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	JSR _0DA987
++	JSR CODE_0DA9D6
+++	STY wm_BlockSubScrPos
+	JMP _0DDB1B
+
+CODE_0DDB84:
+	LDX m2
+	DEX
+	DEX
+	JSR CODE_0DA97D
+	JMP _0DDB31
+
+Return0DDB8E:
+	RTS
+
+CODE_0DDB8F:
+	LDY wm_BlockSubScrPos
+	LDA #$00
+	STA m2
+	STA m0
+	JSR CODE_0DA6B1
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	INC m0
+_0DDBA4:
+	LDX m2
+	JSR BlockIsPage2
+	LDA #$D6
+	JSR CODE_0DA95B
+_0DDBAE:
+	DEX
+	BMI _0DDBC7
+	JSR BlockIsPage2
+	LDA #$FD
+	JSR CODE_0DA95B
+	JMP _0DDBC4
+
+CODE_0DDBBC:
+	JSR BlockIsPage2
+	LDA #$FF
+	JSR CODE_0DA95B
+_0DDBC4:
+	DEX
+	BPL CODE_0DDBBC
+_0DDBC7:
+	JSR CODE_0DA6BA
+	INC m2
+	DEC m0
+	BEQ CODE_0DDBF9
+	BPL CODE_0DDBD5
+	JMP Return0DDC01
+
+CODE_0DDBD5:
+	LDA wm_BlockSubScrPos
+	CLC
+	ADC #$0F
+	TAY
+	BCC +
+	JSR _0DA987
++	TYA
+	AND #$0F
+	CMP #$0F
+	BNE ++
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	JSR _0DA987
++	JSR CODE_0DA9D6
+++	STY wm_BlockSubScrPos
+	JMP _0DDBA4
+
+CODE_0DDBF9:
+	LDX m2
+	JSR CODE_0DA97D
+	JMP _0DDBAE
+
+Return0DDC01:
+	RTS
+
+ADDR_0DDC02:
+	LDY wm_BlockSubScrPos
+	LDX #$01
+	STX m2
+	STX m0
+	JSR CODE_0DA6B1
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	INC m0
+	JMP _0DDC3D
+
+ADDR_0DDC1A:
+	JSR BlockIsPage2
+	LDA #$FF
+	JSR CODE_0DA95B
+	DEX
+_0DDC23:
+	CPX #$03
+	BNE ADDR_0DDC1A
+	JSR BlockIsPage2
+	LDA #$FF
+	JSR CODE_0DA95B
+	JSR BlockIsPage2
+	LDA #$FC
+	JSR CODE_0DA95B
+	DEX
+	DEX
+	LDA m0
+	BEQ +
+_0DDC3D:
+	JSR BlockIsPage2
+	LDA #$D4
+	JSR CODE_0DA95B
+	JSR BlockIsPage2
+	LDA #$D5
+	JSR CODE_0DA95B
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	INC m2
+	INC m2
+	LDX m2
+	DEC m0
+	BPL ADDR_0DDC5E
++	RTS
+
+ADDR_0DDC5E:
+	JMP _0DDC23
+
+CODE_0DDC61:
+	LDY wm_BlockSubScrPos
+	LDX #$00
+	STX m2
+	STX m0
+	JSR CODE_0DA6B1
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	INC m0
+	JMP _0DDC8E
+
+CODE_0DDC79:
+	JSR BlockIsPage2
+	LDA #$FF
+	JSR CODE_0DA95B
+	DEX
+-	CPX #$01
+	BNE CODE_0DDC79
+	JSR BlockIsPage2
+	LDA #$FE
+	JSR CODE_0DA95B
+_0DDC8E:
+	LDA m0
+	BEQ +
+	JSR BlockIsPage2
+	LDA #$D7
+	JSR CODE_0DA95B
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	INC m2
+	LDX m2
+	DEC m0
+	BPL -
++	RTS
+
+CODE_0DDCA9:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	AND #$0F
+	STA m0
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m1
+	JSR CODE_0DA6B1
+	TXA
+	LDX m0
+	SEC
+	SBC #$39
+	BNE CODE_0DDCD2
+-	JSR BlockIsPage2
+	LDA #$59
+	JSR CODE_0DA95B
+	DEX
+	BPL -
+	JMP _0DDCDD
+
+CODE_0DDCD2:
+	JSR BlockIsPage2
+	LDA #$FF
+	JSR CODE_0DA95B
+	DEX
+	BPL CODE_0DDCD2
+_0DDCDD:
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	LDX m0
+	DEC m1
+	BPL CODE_0DDCD2
+	RTS
+
+CODE_0DDCEA:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	LDA wm_BlockSizeType
+	AND #$0F
+	STA m1
+	JSR CODE_0DA6B1
+	LDA m0
+	BEQ +
+-	LDX m1
+--	JSR BlockIsPage2
+	LDA #$65
+	JSR CODE_0DA95B
+	DEX
+	BPL --
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	DEC m0
+	BNE -
++	LDX m1
+-	JSR BlockIsPage2
+	LDA #$4E
+	JSR CODE_0DA95B
+	DEX
+	BPL -
+	RTS
+
+DATA_0DDD26:	.DB $50,$50,$51,$51
+
+DATA_0DDD2A:	.DB $4D,$50,$4F,$51
+
+CODE_0DDD2E:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	LDA wm_BlockSizeType
+	AND #$0F
+	TAX
+	LDA m0
+	BEQ +
+-	JSR BlockIsPage2
+	LDA.L DATA_0DDD26,X
+	STA [wm_Map16BlkPtrL],Y
+	JSR CODE_0DA97D
+	DEC m0
+	BNE -
++	JSR BlockIsPage2
+	LDA.L DATA_0DDD2A,X
+	JSR CODE_0DA95B
+	RTS
+
+CODE_0DDD5C:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m0
+	LDA wm_BlockSizeType
+	AND #$0F
+	STA m1
+	JSR CODE_0DA6B1
+-	LDX m1
+--	JSR BlockIsPage2
+	LDA #$65
+	JSR CODE_0DA95B
+	DEX
+	BPL --
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	DEC m0
+	BPL -
+	RTS
+
+CODE_0DDD87:
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	AND #$01
+	JSL ExecutePtrLong
+
+PtrsLong0DDD93:
+	.DL CODE_0DDD99
+	.DL CODE_0DDE3C
+
+CODE_0DDD99:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	AND #$0F
+	STA m0
+	ASL
+	CLC
+	ADC #$02
+	STA m1
+_0DDDA7:
+	JSR CODE_0DA6B1
+	LDX m1
+	JSR BlockIsPage2
+	LDA #$CA
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
++	JSR BlockIsPage2
+	LDA #$CB
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
++	JSR BlockIsPage2
+	LDA #$F1
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
++	DEX
+	DEX
+	JMP _0DDE09
+
+CODE_0DDDF3:
+	JSR BlockIsPage1
+	LDA #$3F
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC _0DDE09
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
+_0DDE09:
+	DEX
+	BPL CODE_0DDDF3
+	JSR CODE_0DA6BA
+	LDA wm_BlockSubScrPos
+	CLC
+	ADC #$1F
+	TAY
+	BCC +
+	JSR _0DA987
++	TYA
+	AND #$0F
+	CMP #$0F
+	BNE ++
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	JSR _0DA987
++	JSR CODE_0DA9D6
+++	STY wm_BlockSubScrPos
+	DEC m1
+	DEC m1
+	DEC m0
+	BMI Return0DDE3B
+	JMP _0DDDA7
+
+Return0DDE3B:
+	RTS
+
+CODE_0DDE3C:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	AND #$0F
+	STA m0
+	ASL
+	CLC
+	ADC #$02
+	STA m1
+_0DDE4A:
+	JSR CODE_0DA6B1
+	LDX m1
+	JSR BlockIsPage2
+	LDA #$CC
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
++	JSR BlockIsPage2
+	LDA #$CD
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
++	JSR BlockIsPage2
+	LDA #$F2
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC +
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
++	DEX
+	DEX
+	JMP _0DDEAC
+
+CODE_0DDE96:
+	JSR BlockIsPage1
+	LDA #$3F
+	STA [wm_Map16BlkPtrL],Y
+	TYA
+	CLC
+	ADC #$10
+	TAY
+	BCC _0DDEAC
+	LDA wm_Map16BlkPtrL+1
+	ADC #$00
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
+_0DDEAC:
+	DEX
+	BPL CODE_0DDE96
+	JSR CODE_0DA6BA
+	LDA wm_BlockSubScrPos
+	CLC
+	ADC #$20
+	TAY
+	BCC +
+	JSR _0DA987
++	TYA
+	CLC
+	ADC #$01
+	TAY
+	AND #$0F
+	BNE +
+	JSR CODE_0DA9EF
+	DEY
+	TYA
+	AND #$F0
+	TAY
++	STY wm_BlockSubScrPos
+	DEC m1
+	DEC m1
+	DEC m0
+	BMI Return0DDEDB
+	JMP _0DDE4A
+
+Return0DDEDB:
+	RTS
+
+DATA_0DDEDC:
+	.DB $5C,$5D,$5E,$60
+	.DB $73,$74,$75
+	.DB $62,$63,$64,$5F
+	.DB $76,$76,$76
+
+DATA_0DDEEA:	.DB $50,$58,$94,$9C,$D0,$D8,$14,$1C
+
+DATA_0DDEF2:
+	.DB >wm_Map16SetL.1,>wm_Map16SetL.1,>wm_Map16SetL.1,>wm_Map16SetL.1
+	.DB >wm_Map16SetL.1,>wm_Map16SetL.1,>wm_Map16SetL.2,>wm_Map16SetL.2
+
+DATA_0DDEFA:
+.REPEAT 16 INDEX COUNT
+	.DW (wm_Map16SetL+(COUNT*$01B0))&$FFFF
+.ENDR
+
+DATA_0DDF1A: ; dupe of above
+.REPEAT 16 INDEX COUNT
+	.DW (wm_Map16SetL+(COUNT*$01B0))&$FFFF
+.ENDR
+
+CODE_0DDF3A:
+	LDA wm_BlockSizeType
+	AND #$0F
+	STA wm_BlockSizeType
+	JSR CODE_0DA6B1
+	LDY #$50
+	STY wm_BlockSubScrPos
+	LDA #$0F
+	STA m0
+	LDA #$04
+	STA m1
+-	LDX m0
+--	JSR BlockIsPage2
+	LDA #$61
+	JSR CODE_0DA95B
+	DEX
+	BPL --
+	JSR CODE_0DA6BA
+	LDA wm_BlockSubScrPos
+	CLC
+	ADC #$40
+	STA wm_BlockSubScrPos
+	TAY
+	BCC +
+	JSR _0DA987
++	DEC m1
+	BPL -
+	LDA #$00
+	STA wm_Map16BlkPtrL
+	STA m4
+	STA wm_Map16BlkPtrH
+	LDA #$00
+	STA m0
+	LDA #$07
+	STA m3
+_0DDF80:
+	LDA #$02
+	STA m1
+	LDX m0
+	LDA.L DATA_0DDEEA,X
+	STA wm_BlockSubScrPos
+	TAY
+	LDA.L DATA_0DDEF2,X
+	STA wm_Map16BlkPtrL+1
+	STA m5
+	STA wm_Map16BlkPtrH+1
+	LDA #$03
+	STA m2
+	LDX #$00
+-	JSR BlockIsPage2
+	LDA.L DATA_0DDEDC,X
+	JSR CODE_0DA95B
+	INX
+	DEC m2
+	BPL -
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+-	JSR BlockIsPage1
+	LDA.L DATA_0DDEDC,X
+	JSR CODE_0DA95B
+	JSR BlockIsPage1
+	LDA.L DATA_0DDEDC+1,X
+	JSR CODE_0DA95B
+	JSR BlockIsPage1
+	LDA.L DATA_0DDEDC+2,X
+	STA [wm_Map16BlkPtrL],Y
+	JSR CODE_0DA97D
+	DEC m1
+	BPL -
+	INX
+	INX
+	INX
+	LDA #$03
+	STA m2
+-	JSR BlockIsPage2
+	LDA.L DATA_0DDEDC,X
+	JSR CODE_0DA95B
+	INX
+	DEC m2
+	BPL -
+	JSR CODE_0DA6BA
+	LDA #$02
+	STA m2
+	JSR CODE_0DA97D
+-	JSR BlockIsPage1
+	LDA.L DATA_0DDEDC,X
+	JSR CODE_0DA95B
+	INX
+	DEC m2
+	BPL -
+	DEC m3
+	BMI CODE_0DE00E
+	INC m0
+	JMP _0DDF80
+
+CODE_0DE00E:
+	LDA #$01
+	STA m8
+	LDA #$00
+	STA m9
+_0DE016:
+	REP #$30
+	LDA m8
+	ASL
+	TAX
+	LDA.L DATA_0DDEFA,X
+	STA m4
+	LDA.L DATA_0DDF1A,X
+	STA m6
+	LDA #$01B0
+	STA m0
+	LDA.W #(wm_Map16SetL)&$FFFF
+	STA m2
+	PHB
+	LDA m0
+	LDX m2
+	LDY m4
+	MVN wm_Map16SetL>>16,wm_Map16SetL>>16
+	PLB
+	LDA #$01B0
+	STA m0
+	LDA.W #(wm_Map16SetH)&$FFFF
+	STA m2
+	PHB
+	LDA m0
+	LDX m2
+	LDY m6
+	MVN wm_Map16SetH>>16,wm_Map16SetH>>16
+	PLB
+	SEP #$30
+	DEC wm_BlockSizeType
+	BEQ Return0DE05D
+	INC m8
+	JMP _0DE016
+
+Return0DE05D:
+	RTS
+
+DATA_0DE05E:
+	.DB $5C,$5D,$5E,$60
+	.DB $73,$74,$75
+	.DB $73,$74,$75
+	.DB $73,$74,$75
+	.DB $73,$74,$75
+	.DB $76,$76,$76
+	.DB $5C,$5D,$5E,$60
+	.DB $77,$78,$79
+	.DB $7A,$7B,$7C
+	.DB $77,$78,$79
+	.DB $7A,$7B,$7C
+	.DB $76,$76,$76
+	.DB $5C,$5D,$5E,$60
+	.DB $73,$7D,$75
+	.DB $73,$7E,$75
+	.DB $73,$74,$75
+	.DB $7F,$74,$75
+	.DB $76,$76,$76
+	.DB $5C,$5D,$5E,$60
+	.DB $77,$82,$83
+	.DB $7A,$85,$86
+	.DB $81,$78,$79
+	.DB $84,$7B,$7C
+	.DB $76,$76,$76
+
+DATA_0DE0AA:	.DB $00,$13,$26,$39 ; TODO POINT these, canvass offests
+
+CODE_0DE0AE:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	SEC
+	SBC #$71
+	TAX
+	LDA.L DATA_0DE0AA,X
+	TAX
+	JSR CODE_0DA6B1
+	LDA #$02
+	STA m1
+	LDA #$03
+	STA m2
+-	JSR BlockIsPage2
+	LDA.L DATA_0DE05E,X
+	JSR CODE_0DA95B
+	INX
+	DEC m2
+	BPL -
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+-	LDA #$02
+	STA m2
+--	JSR BlockIsPage1
+	LDA.L DATA_0DE05E,X
+	JSR CODE_0DA95B
+	INX
+	DEC m2
+	BPL --
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	DEC m1
+	BPL -
+	LDA #$02
+	STA m2
+-	JSR BlockIsPage1
+	LDA.L DATA_0DE05E,X
+	JSR CODE_0DA95B
+	INX
+	DEC m2
+	BPL -
+	JSR BlockIsPage2
+	LDA #$5F
+	STA [wm_Map16BlkPtrL],Y
+	JSR CODE_0DA6BA
+	LDA #$02
+	STA m2
+	JSR CODE_0DA97D
+-	JSR BlockIsPage1
+	LDA.L DATA_0DE05E,X
+	JSR CODE_0DA95B
+	INX
+	DEC m2
+	BPL -
+	RTS
+
+DATA_0DE12C:	.DB $45,$50,$4D
+
+DATA_0DE12F:	.DB $00,$F0,$4E
+
+DATA_0DE132:	.DB $48,$51,$4F
+
+CODE_0DE135:
+	LDY wm_BlockSubScrPos
+	LDA wm_BlockSizeType
+	AND #$0F
+	STA m0
+	LDA wm_BlockSizeType
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m1
+	JSR CODE_0DA6B1
+	LDX #$00
+_0DE14A:
+	LDA m0
+	STA m2
+	JSR BlockIsPage2
+	LDA.L DATA_0DE12C,X
+	JSR CODE_0DA95B
+	JMP _0DE165
+
+CODE_0DE15B:
+	JSR BlockIsPage2
+	LDA.L DATA_0DE12F,X
+	JSR CODE_0DA95B
+_0DE165:
+	DEC m2
+	BNE CODE_0DE15B
+	JSR BlockIsPage2
+	LDA.L DATA_0DE132,X
+	STA [wm_Map16BlkPtrL],Y
+	JSR CODE_0DA6BA
+	JSR CODE_0DA97D
+	LDX #$01
+	DEC m1
+	BMI Return0DE185
+	BNE +
+	LDX #$02
++	JMP _0DE14A
+
+Return0DE185:
+	RTS

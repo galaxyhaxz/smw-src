@@ -1,0 +1,4 @@
+5c5
+< .ProgramSize		db !SNES_SIZE_512KB
+---
+> .ProgramSize		db !SNES_SIZE_1MB

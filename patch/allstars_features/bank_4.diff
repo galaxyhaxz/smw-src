@@ -1,0 +1,45 @@
+391a392,397
+> 	LDA.w !RAM_ControllerFrameA
+> 	AND #$20
+> 	BEQ CODE_048380
+> 	LDA #$09
+> 	STA !RAM_OWPromptTrig
+> CODE_048380:
+5049c5055,5057
+< %FREE_BYTES(834)
+---
+> %FREE_BYTES(751)
+> 
+> DATA_04F200:	incbin "images/overworld/continue_exit.bin"
+5240a5249,5252
+> 	dw CODE_04F3FF
+> 	dw CODE_04F415
+> 	dw CODE_04F3FB
+> 	dw CODE_04F415
+5245a5258,5261
+> CODE_04F3FB:
+> 	JSL CODE_009BC5
+> 	RTS
+> 
+5276c5292
+< 	BNE CODE_04F43D
+---
+> 	BNE CODE_04F430
+5278a5295,5307
+> CODE_04F430:
+> 	CMP #$0B
+> 	BNE CODE_04F43D
+> 	PHX
+> 	PHA
+> 	LDX #$53
+> CODE_04F433:
+> 	LDA.w DATA_04F200,X
+> 	STA !RAM_ImageUploadTable,X
+> 	DEX
+> 	BPL CODE_04F433
+> 	PLA
+> 	PLX
+6732c6761
+< %FREE_BYTES(79)
+---
+> %FREE_BYTES(34)

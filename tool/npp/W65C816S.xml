@@ -1,0 +1,64 @@
+<NotepadPlus>
+    <UserLang name="W65C816S Assembly" ext="a i s" udlVersion="2.1">
+        <Settings>
+            <Global caseIgnored="yes" allowFoldOfComments="no" foldCompact="no" forcePureLC="0" decimalSeparator="0" />
+            <Prefix Keywords1="no" Keywords2="no" Keywords3="no" Keywords4="no" Keywords5="no" Keywords6="no" Keywords7="no" Keywords8="no" />
+        </Settings>
+        <KeywordLists>
+            <Keywords name="Comments">00; 01 02 03/* 04*/</Keywords>
+            <Keywords name="Numbers, prefix1">#</Keywords>
+            <Keywords name="Numbers, prefix2"></Keywords>
+            <Keywords name="Numbers, extras1"></Keywords>
+            <Keywords name="Numbers, extras2"></Keywords>
+            <Keywords name="Numbers, suffix1"></Keywords>
+            <Keywords name="Numbers, suffix2"></Keywords>
+            <Keywords name="Numbers, range"></Keywords>
+            <Keywords name="Operators1">+ - * / &lt; &gt; ^ | , ~ ? &amp; = : . ! ( ) [ ] \</Keywords>
+            <Keywords name="Operators2"></Keywords>
+            <Keywords name="Folders in code1, open"></Keywords>
+            <Keywords name="Folders in code1, middle"></Keywords>
+            <Keywords name="Folders in code1, close"></Keywords>
+            <Keywords name="Folders in code2, open">ASCTABLE ASCIITABLE ASM BLOCK ENUM IF IFDEF IFDEFM IFEQ IFEXISTS IFGR IFGREQ IFLE IFLEEQ IFNDEF IFNDEFM IFNEQ MACRO MEMORYMAP RAMSECTION REPEAT REPT ROMBANKMAP SECTION STRUCT SNESEMUVECTOR SNESHEADER SNESNATIVEVECTOR</Keywords>
+            <Keywords name="Folders in code2, middle">ELSE</Keywords>
+            <Keywords name="Folders in code2, close">ENDA ENDASM ENDB ENDE ENDIF ENDM ENDME ENDR ENDRO ENDS ENDST ENDEMUVECTOR ENDNATIVEVECTOR ENDSNES</Keywords>
+            <Keywords name="Folders in comment, open"></Keywords>
+            <Keywords name="Folders in comment, middle"></Keywords>
+            <Keywords name="Folders in comment, close"></Keywords>
+            <Keywords name="Keywords1">BCC BCS BNE BEQ BPL BMI BVC BVS BBS BBC CBNE DBNZ</Keywords>
+            <Keywords name="Keywords2">BRA BRL JMP JML RTS RTL RTI RET RET1 BRK COP STP SLEEP STOP</Keywords>
+            <Keywords name="Keywords3">JSR JSL CALL PCALL TCALL</Keywords>
+            <Keywords name="Keywords4">PHA PHX PHY PHD PHB PHK PHP PEA PEI PER PLA PLX PLY PLP PLD PLB PUSH POP A X Y S YA PSW SP</Keywords>
+            <Keywords name="Keywords5">ADC SBC INA INC INX INY DEA DEC DEX DEY AND ASL EOR LSR ORA ROL ROR SWA TRB TSB XBA OR XCN INCW DECW ADDW SUBW MUL DIV DAA DAS AND1 OR1 EOR1</Keywords>
+            <Keywords name="Keywords6">CLC CLD CLI CLV REP SEC SED SEP SEI XCE CLRC SETC NOTC CLRV CLRP SETP EI DI SET1 CLR1 TSET1 TCLR1 NOT1 NOP WAI WDM</Keywords>
+            <Keywords name="Keywords7">TAD TAS TAX TAY TCD TCS TDA TDC TSA TSC TSX TXA TXS TXY TYA TYX MVN MVP</Keywords>
+            <Keywords name="Keywords8">16BIT 24BIT 8BIT ACCU ASC BACKGROUND BANK BASE BR BREAKPOINT BYT BYTE ROMBANKSIZE DB DBM DBCOS DBRND DBSIN DEFINE DEF DL DS DSB DSTRUCT DSW DW DWM DWCOS DWRND DWSIN EQU FAIL FCLOSE FOPEN FREAD FSIZE INCBIN INCDIR INCLUDE INDEX INPUT LONG ORG ORGA PRINTT PRINTV REDEFINE REDEF ROMBANKS SEED SHIFT SLOT SYM SYMBOL UNBACKGROUND UNDEFINE UNDEF WORD EMPTYFILL EXPORT FASTROM HIROM LOROM NAME OUTNAME SLOWROM SMC COMPUTESNESCHECKSUM B L W</Keywords>
+            <Keywords name="Delimiters">00&quot; 01\ 02&quot; 03&apos; 04 05&apos; 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</Keywords>
+        </KeywordLists>
+        <Styles>
+            <WordsStyle name="DEFAULT" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="COMMENTS" fgColor="008000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="LINE COMMENTS" fgColor="008000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="NUMBERS" fgColor="FF8000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS1" fgColor="000000" bgColor="FFFF80" fontName="" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS2" fgColor="00FFFF" bgColor="000000" fontName="" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS3" fgColor="000000" bgColor="FFA980" fontName="" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS4" fgColor="FF0000" bgColor="FFFFFF" fontName="" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS5" fgColor="0000FF" bgColor="FFFFFF" fontName="" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS6" fgColor="8000FF" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS7" fgColor="804000" bgColor="FFFFFF" fontName="" fontStyle="5" nesting="0" />
+            <WordsStyle name="KEYWORDS8" fgColor="0080FF" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="OPERATORS" fgColor="000080" bgColor="FFFFFF" fontName="" fontStyle="1" nesting="0" />
+            <WordsStyle name="FOLDER IN CODE1" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="FOLDER IN CODE2" fgColor="FF00FF" bgColor="FFFFFF" fontName="" fontStyle="2" nesting="0" />
+            <WordsStyle name="FOLDER IN COMMENT" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS1" fgColor="808080" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS2" fgColor="808000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS3" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS4" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS5" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS6" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS7" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS8" fgColor="000000" bgColor="FFFFFF" fontName="" fontStyle="0" nesting="0" />
+        </Styles>
+    </UserLang>
+</NotepadPlus>

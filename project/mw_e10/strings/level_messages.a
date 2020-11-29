@@ -1,0 +1,221 @@
+.INCLUDE "strings/table.i"
+
+LevelMsg00:
+	.ASC "Welcome!   This is\n"
+	.ASC "Dinosaur Land.  In\n"
+	.ASC "this strange  land\n"
+	.ASC "we    find    that\n"
+	.ASC "Princess Toadstool\n"
+	.ASC "is  missing again!\n"
+	.ASC "Looks  like Bowser\n"
+	.ASC "is at it again!\n"
+
+LevelMsg01:
+	.ASC "- SWITCH PALACE -\n"
+	.ASC "The  power  of the\n"
+	.ASC "switch  you   have\n"
+	.ASC "pushed  will  turn\n"
+	.ASC " \n"
+	.ASC "      into     .\n"
+	.ASC "Your progress will\n"
+	.ASC "also   be   saved.\n"
+
+LevelMsg02:
+	.ASC "Hello!   Sorry I'm\n"
+	.ASC "not  home,  but  I\n"
+	.ASC "have    gone    to\n"
+	.ASC "rescue  my friends\n"
+	.ASC "who were  captured\n"
+	.ASC "by Bowser.\n"
+	.ASC "                \x60\xE1"
+	.ASC "         - Yoshi\x62\xE3"
+
+LevelMsg03:
+	.ASC "Hooray!  Thank you\n"
+	.ASC "for rescuing   me.\n"
+	.ASC "My name  is Yoshi.\n"
+	.ASC "On   my   way   to\n"
+	.ASC "rescue my friends,\n"
+	.ASC "Bowser trapped  me\n"
+	.ASC "in that egg.\n"
+	.ASC " \n"
+
+LevelMsg04:
+	.ASC "It is possible  to\n"
+	.ASC "fill in the dotted\n"
+	.ASC "line blocks.    To\n"
+	.ASC "fill in the yellow\n"
+	.ASC "ones, just go west\n"
+	.ASC "then north  to the\n"
+	.ASC "top     of     the\n"
+	.ASC "mountain.\n"
+
+LevelMsg05:
+	.ASC "-POINT OF ADVICE-\n"
+	.ASC "You  can  hold  an\n"
+	.ASC "extra item  in the\n"
+	.ASC "box at  the top of\n"
+	.ASC "the screen.     To\n"
+	.ASC "use it,  press the\n"
+	.ASC "SELECT Button.\n"
+	.ASC " \n"
+
+LevelMsg06:
+	.ASC "-POINT OF ADVICE-\n"
+	.ASC "To   pick   up   a\n"
+	.ASC "shell,  use  the X\n"
+	.ASC "or  Y  Button.  To\n"
+	.ASC "throw    a   shell\n"
+	.ASC "upwards,  look  up\n"
+	.ASC "and let go of  the\n"
+	.ASC "button.\n"
+
+LevelMsg07:
+	.ASC "To do a spin jump,\n"
+	.ASC "press    the     A\n"
+	.ASC "Button.    A Super\n"
+	.ASC "Mario   spin  jump\n"
+	.ASC "can break some  of\n"
+	.ASC "the   blocks   and\n"
+	.ASC "defeat some of the\n"
+	.ASC "tougher enemies.\n"
+
+LevelMsg08:
+	.ASC "-POINT OF ADVICE-\n"
+	.ASC "This   gate  marks\n"
+	.ASC "the middle of this\n"
+	.ASC "area.   By cutting\n"
+	.ASC "the tape here, you\n"
+	.ASC "can continue  from\n"
+	.ASC "close   to    this\n"
+	.ASC "point.\n"
+
+LevelMsg09:
+	.ASC "-POINT OF ADVICE-\n"
+	.ASC "The big coins  are\n"
+	.ASC "Dragon Coins.   If\n"
+	.ASC "you  pick up  five\n"
+	.ASC "of  these  in  one\n"
+	.ASC "area,  you  get an\n"
+	.ASC "extra Mario.\n"
+	.ASC " \n"
+
+LevelMsg0A:
+	.ASC "When you  stomp on\n"
+	.ASC "an enemy,  you can\n"
+	.ASC "jump high  if  you\n"
+	.ASC "hold    the   jump\n"
+	.ASC "button.  Use Up on\n"
+	.ASC "the Control Pad to\n"
+	.ASC "jump high  in  the\n"
+	.ASC "shallow water.\n"
+
+LevelMsg0B:
+	.ASC "If  you are  in an\n"
+	.ASC "area that you have\n"
+	.ASC "already   cleared,\n"
+	.ASC "you can  return to\n"
+	.ASC "the map screen  by\n"
+	.ASC "pressing    START,\n"
+	.ASC "then SELECT.\n"
+	.ASC " \n"
+
+LevelMsg0C:
+	.ASC "You   get    Bonus\n"
+	.ASC "Stars  if  you cut\n"
+	.ASC "the  tape  at  the\n"
+	.ASC "end  of each area.\n"
+	.ASC "If you collect 100\n"
+	.ASC "Bonus  Stars   you\n"
+	.ASC "can   play  a  fun\n"
+	.ASC "bonus game.\n"
+
+LevelMsg0D:
+	.ASC "Press Up   on  the\n"
+	.ASC "Control Pad  while\n"
+	.ASC "jumping   and  you\n"
+	.ASC "can  cling  to the\n"
+	.ASC "fence.    To go in\n"
+	.ASC "the  door  at  the\n"
+	.ASC "end  of this area,\n"
+	.ASC "use Up also.\n"
+
+LevelMsg0E:
+	.ASC "-POINT OF ADVICE-\n"
+	.ASC "One   of   Yoshi's\n"
+	.ASC "friends is trapped\n"
+	.ASC "in  the castle  by\n"
+	.ASC "Iggy Koopa.     To\n"
+	.ASC "defeat  him,  push\n"
+	.ASC "him into  the lava\n"
+	.ASC "pool.\n"
+
+LevelMsg0F:
+	.ASC "Use  Mario's  cape\n"
+	.ASC "to   soar  through\n"
+	.ASC "the air! Run fast,\n"
+	.ASC "jump, and hold the\n"
+	.ASC "Y Button.  To keep\n"
+	.ASC "balance,  use left\n"
+	.ASC "and  right  on the\n"
+	.ASC "Control Pad.\n"
+
+LevelMsg10:
+	.ASC "The red dot  areas\n"
+	.ASC "on  the  map  have\n"
+	.ASC "two      different\n"
+	.ASC "exits.      If you\n"
+	.ASC "have  the time and\n"
+	.ASC "skill,  be sure to\n"
+	.ASC "look for them.\n"
+	.ASC " \n"
+
+LevelMsg11:
+	.ASC "This  is  a  Ghost\n"
+	.ASC "House.     Can you\n"
+	.ASC "find   the   exit?\n"
+	.ASC "Hee,  hee,  hee...\n"
+	.ASC "Don't get lost!\n"
+	.ASC " \n"
+	.ASC " \n"
+	.ASC " \n"
+
+LevelMsg12:
+	.ASC "You can  slide the\n"
+	.ASC "screen   left   or\n"
+	.ASC "right  by pressing\n"
+	.ASC "the L or R Buttons\n"
+	.ASC "on   top   of  the\n"
+	.ASC "controller.    You\n"
+	.ASC "may be able to see\n"
+	.ASC "further ahead.\n"
+
+LevelMsg13:
+	.ASC "There   are   five\n"
+	.ASC "entrances  to  the\n"
+	.ASC "Star   World    in\n"
+	.ASC "Dinosaur     Land.\n"
+	.ASC "Find  them all and\n"
+	.ASC "you   can   travel\n"
+	.ASC "between       many\n"
+	.ASC "different places.\n"
+
+LevelMsg14:
+	.ASC "Here,   the  coins\n"
+	.ASC "you   collect   or\n"
+	.ASC "the time remaining\n"
+	.ASC "can  change   your\n"
+	.ASC "progress.  Can you\n"
+	.ASC "find  the  special\n"
+	.ASC "goal?\n"
+	.ASC " \n"
+
+LevelMsg15:
+	.ASC "Amazing!  Few have\n"
+	.ASC "made it  this far.\n"
+	.ASC "Beyond  lies   the\n"
+	.ASC "Special      Zone.\n"
+	.ASC "Complete  it   and\n"
+	.ASC "you can explore  a\n"
+	.ASC "strange new world.\n"
+	.ASC "GOOD LUCK!\n"

@@ -1,0 +1,221 @@
+This document contains solutions for coding bugs in the original Super
+Mario World. To find the bug-fix location, search for "BUG-FIX: ID XXX-YY"
+within the bank assembly files. "XXX" is the bug-fix id, and "YY" is each
+part of the bug. To apply a bug-fix, delete all code under the [YY]
+original section and replace it with the code in the fixed section.
+
+--------------------
+ID 000 - Bank 4
+--------------------
+Problem:
+	During the initial overworld sprite setup, the sprite drawing routine
+	is called when the title screen is loaded.
+
+Effect:
+	Sprite tile garbage appears briefly on the opening effect, although
+	potentially masked by the title screen image.
+
+Comments:
+	None.
+
+Solution:
+[00] - Original
+{
+	STX !RAM_OWSpriteIndex
+	JSR CODE_04F853
+	PLA
+}
+
+[00] - Fixed
+{
+	STX !RAM_OWSpriteIndex
+	PLA
+}
+
+--------------------
+ID 001 - Bank 1
+--------------------
+Problem:
+	During the piranha plants' graphic routine, the tile property for the
+	stem is only stored to the upside-down piranha plant's OAM.
+
+Effect:
+	The regular piranha plant's stem will display an incorrect tile.
+
+Comments:
+	The piranha plant is still underground tile-set specific.
+
+Solution:
+[00] - Original
+{
+	LDA !OAM_Tile3Prop,Y
+	AND #$F1
+	ORA #$0B
+	STA !OAM_Tile3Prop,Y
+}
+
+[00] - Fixed
+{
+	LDA !RAM_SpriteNum,X
+	CMP #$1A
+	BNE IsUpsideDown
+	LDA !OAM_Tile2Prop,Y
+	AND #$F1
+	ORA #$0B
+	STA !OAM_Tile2Prop,Y
+	BRA FinishPiranhaProp
+
+IsUpsideDown:
+	LDA !OAM_Tile3Prop,Y
+	AND #$F1
+	ORA #$0B
+	STA !OAM_Tile3Prop,Y
+FinishPiranhaProp:
+}
+
+--------------------
+ID 002 - Bank 2
+--------------------
+Problem:
+	The tile property of the 5-up sprite is nonexistent.
+
+Effect:
+	The 5-up sprite will use the incorrect property byte and appear
+	garbled.
+
+Comments:
+	None.
+
+Solution:
+[00] - Original
+{
+The2Up3UpAttr:	db $04,$06
+}
+
+[00] - Fixed
+{
+The2Up3UpAttr:	db $04,$06,$0A
+}
+
+--------------------
+ID 003 - Bank 2
+--------------------
+Problem:
+	Jumping on a wiggler while not mad, the point counter will infinitely
+	increase.
+
+Effect:
+	The player will be able to exceed the 1-up bonus, causing incorrect
+	bonuses to be applied.
+
+Comments:
+	None.
+
+Solution:
+[00] - Original
+{
+	INC $1697
+}
+
+[00] - Fixed
+{
+	CMP #$09
+	BCC NotMaxWigglerScore
+	LDA #$08
+NotMaxWigglerScore:
+	INC $1697
+}
+
+--------------------
+ID 004 - Bank 0
+--------------------
+Problem:
+	Jumping while holding "A/B" will always slowdown the player's gravity.
+
+Effect:
+	The player will have the permanent ability to fall slower without
+	needing the cape power-up.
+
+Comments:
+	None.
+
+Solution:
+[00] - Original
+{
+	BMI CODE_00D948
+}
+
+[00] - Fixed
+{
+	BMI SlowPlayerYAccel
+}
+
+[01] - Original
+{
+	CLC
+}
+
+[01] - Fixed
+{
+	LDY #$00
+SlowPlayerYAccel:
+	CLC
+}
+
+--------------------
+ID 005 - Bank 2
+--------------------
+Problem:
+	Chargin' chucks' arm palette is incorrect.
+
+Effect:
+	While charging, chargin' chucks' arm will have incorrect colors.
+
+Comments:
+	This is a leftover from the beta-phase of Super Mario World, where
+	all chucks' were originally colored blue.
+
+Solution:
+[00] - Original
+{
+ChuckGfxProp:	db $47,$07
+}
+
+[00] - Fixed
+{
+ChuckGfxProp:	db $4B,$0B
+}
+
+--------------------
+ID 006 - Bank 0
+--------------------
+Problem:
+	Loading screen text "MARIO/LUIGI START!" has an incorrect palette
+	setting on the 'S' in "START!".
+
+Effect:
+	The 'S' in "START!" will have incorrect colors when shown.
+
+Comments:
+	None.
+
+Solution:
+[00] - Original
+{
+	db $34,$00,$34,$34,$34,$34,$30,$00
+}
+
+[00] - Fixed
+{
+	db $34,$00,$34,$34,$34,$34,$34,$00
+}
+
+[01] - Original
+{
+	db $34,$00,$B4,$34,$34,$B4,$F0,$00
+}
+
+[01] - Fixed
+{
+	db $34,$00,$B4,$34,$34,$B4,$F4,$00
+}

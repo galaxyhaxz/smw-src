@@ -1,0 +1,232 @@
+This document contains various RAM addresses and the definitions of each
+value when stored to that address.
+
+RAM_MarioAnimation
+	$00 - ResetAni
+	$01 - PowerDownAni
+	$02 - MushroomAni
+	$03 - CapeAni
+	$04 - FlowerAni
+	$05 - DoorPipeAni
+	$06 - VertPipeAni
+	$07 - PipeCannonAni
+	$08 - YoshiWingsAni
+	$09 - MarioDeathAni
+	$0A - EnterCastleAni
+	$0B - UnknownAniB
+	$0C - UnknownAniC
+	$0D - Return00C592
+
+RAM_GameMode
+	$00 - GAMEMODE_LoadIntro
+	$01 - GAMEMODE_ShowIntro
+	$02 - GAMEMODE_Fade
+	$03 - GAMEMODE_LoadTitleScreen
+	$04 - GAMEMODE_PrepareTitleScreen
+	$05 - GAMEMODE_Fade
+	$06 - GAMEMODE_CircleEffect
+	$07 - GAMEMODE_ShowTitleScreen
+	$08 - GAMEMODE_FileSelect
+	$09 - GAMEMODE_FileDelete
+	$0A - GAMEMODE_PlayerSelect
+	$0B - GAMEMODE_Fade
+	$0C - GAMEMODE_LoadOverworld
+	$0D - GAMEMODE_Fade
+	$0E - GAMEMODE_ShowOverworld
+	$0F - GAMEMODE_Mosaic
+	$10 - GAMEMODE_Black
+	$11 - GAMEMODE_LoadLevel
+	$12 - GAMEMODE_PrepareLevel
+	$13 - GAMEMODE_Mosaic
+	$14 - GAMEMODE_ShowLevel
+	$15 - GAMEMODE_Fade
+	$16 - GAMEMODE_LoadGameOver
+	$17 - GAMEMODE_ShowGameOver
+	$18 - GAMEMODE_Fade
+	$19 - GAMEMODE_Cutscene
+	$1A - GAMEMODE_Fade
+	$1B - GAMEMODE_EndingCinema
+	$1C - GAMEMODE_Fade
+	$1D - GAMEMODE_LoadYoshisHouse
+	$1E - GAMEMODE_Fade
+	$1F - GAMEMODE_ShowYoshisHouse
+	$20 - GAMEMODE_Fade
+	$21 - GAMEMODE_LoadEndingEnemies
+	$22 - GAMEMODE_Fade
+	$23 - GAMEMODE_ShowEndingEnemies
+	$24 - GAMEMODE_Fade
+	$25 - GAMEMODE_NextEndingEnemies
+	$26 - GAMEMODE_Fade
+	$27 - GAMEMODE_LoadTheEnd
+	$28 - GAMEMODE_ShowTheEnd
+	$29 - GAMEMODE_Return
+
+RAM_ExOamSize
+RAM_OamSize
+	$00 - 8x8
+	$02 - 16x16
+
+RAM_SoundCh1
+	$01 - SOUND_HitHead
+	$02 - SOUND_Contact
+	$03 - SOUND_KickShell
+	$04 - SOUND_PipeHurt
+	$05 - SOUND_MidwayPoint
+	$06 - SOUND_YoshiGulp
+	$07 - SOUND_DryBonesCollapse
+	$08 - SOUND_SpinJumpKill
+	$09 - SOUND_FlyWithCape
+	$0A - SOUND_GetPowerup
+	$0B - SOUND_OnOffSwitch
+	$0C - SOUND_ItemPastGoal
+	$0D - SOUND_GetCape
+	$0E - SOUND_Swim
+	$0F - SOUND_HurtWhileFlying
+	$10 - SOUND_MagikoopaMagic
+	$11 - SOUND_Pause
+	$12 - SOUND_Pause
+	$13 - SOUND_EnemyStomp1
+	$14 - SOUND_EnemyStomp2
+	$15 - SOUND_EnemyStomp3
+	$16 - SOUND_EnemyStomp4
+	$17 - SOUND_EnemyStomp5
+	$18 - SOUND_EnemyStomp6
+	$19 - SOUND_EnemyStomp7
+	$1A - SOUND_GrinderClick1
+	$1B - SOUND_GrinderClick2
+	$1C - SOUND_YoshiCoin
+	$1D - SOUND_TimeRunningLow1
+	$1E - SOUND_PBalloon
+	$1F - SOUND_KoopalingDefeated
+	$20 - SOUND_YoshiSpit
+	$21 - SOUND_ValleyofBowserAppears
+	$22 - (NONE)
+	$23 - SOUND_LemmyWendyFall
+	$24 - (NONE)
+	$25 - SOUND_BlarggRoar
+	$26 - SOUND_FireworkWhistle1
+	$27 - SOUND_FireworkBang1
+	$28 - SOUND_FireworkWhistle2
+	$29 - SOUND_FireworkBang2
+	$2A - SOUND_PeachPopsUp
+
+RAM_SoundCh2
+	$01 - SOUND_Jump
+	$02 - SOUND_YoshiDrumOn
+	$03 - SOUND_YoshiDrumOff
+	$04 - SOUND_Grinder
+	$FF - SOUND_Special
+
+RAM_MusicCh1
+	Credits Music
+	$01 - MUSIC_Credits1
+	$02 - MUSIC_Credits2
+	$03 - MUSIC_Credits3
+	$04 - MUSIC_Credits4
+	$05 - MUSIC_Credits1
+	$06 - MUSIC_Credits2
+	$07 - MUSIC_Credits3
+	$08 - MUSIC_Credits4
+	$09 - MUSIC_Credits1
+	$0A - MUSIC_Credits2
+	$0B - MUSIC_Credits3
+	$0C - MUSIC_Credits4
+
+	Level Music
+	$01 - MUSIC_Piano
+	$02 - MUSIC_HereWeGo
+	$03 - MUSIC_Water
+	$04 - MUSIC_BowserFight1
+	$05 - MUSIC_BossBattle
+	$06 - MUSIC_Cave
+	$07 - MUSIC_GhostHouse
+	$08 - MUSIC_Castle
+	$09 - MUSIC_PlayerDied
+	$0A - MUSIC_GameOver
+	$0B - MUSIC_PassedBoss
+	$0C - MUSIC_PassedLevel
+	$0D - MUSIC_Star
+	$0E - MUSIC_DirectionalCoins
+	$0F - MUSIC_IntoKeyhole1
+	$10 - MUSIC_IntoKeyhole2
+	$11 - MUSIC_ZoomIn
+	$12 - MUSIC_SwitchPalace
+	$13 - MUSIC_Welcome
+	$14 - MUSIC_DoneBonusGame
+	$15 - MUSIC_RescueEgg
+	$16 - MUSIC_BowserFight1
+	$17 - MUSIC_BowserZoomOut
+	$18 - MUSIC_BowserZoomIn
+	$19 - MUSIC_BowserFight2
+	$1A - MUSIC_BowserFight3
+	$1B - MUSIC_BowserDied
+	$1C - MUSIC_PrincessKiss
+	$1D - MUSIC_BowserInterlude
+
+	Overworld Music
+	$01 - MUSIC_TitleScreen
+	$02 - MUSIC_MainArea
+	$03 - MUSIC_YoshisIsland
+	$04 - MUSIC_VanillaDome
+	$05 - MUSIC_StarRoad
+	$06 - MUSIC_ForestofIllusion
+	$07 - MUSIC_BowsersValley
+	$08 - MUSIC_BowsersValleyRevealed
+	$09 - MUSIC_SpecialWorld
+
+	Global Effects
+	$80 - MUSIC_Fade
+
+RAM_SoundCh3
+	$01 - SOUND_Coin
+	$02 - SOUND_HitPrizeBlock
+	$03 - SOUND_HitVineBlock
+	$04 - SOUND_SpinJump
+	$05 - SOUND_1Up
+	$06 - SOUND_ShootFireball
+	$07 - SOUND_Shatter
+	$08 - SOUND_SpringBoard
+	$09 - SOUND_BulletBill
+	$0A - SOUND_EggHatch
+	$0B - SOUND_ItemIntoReserve
+	$0C - SOUND_ItemFromReserve
+	$0D - SOUND_ItemFromReserve
+	$0E - SOUND_ScrollScreen
+	$0F - SOUND_Door
+	$10 - SOUND_BulletBill
+	$11 - SOUND_DrumRoll
+	$12 - SOUND_DrumRollEnd
+	$13 - SOUND_LoseYoshi
+	$14 - SOUND_UnusedCape
+	$15 - SOUND_OWTileAppears
+	$16 - SOUND_OWCastleCollapse
+	$17 - SOUND_FireSpit
+	$18 - SOUND_Thunder
+	$19 - SOUND_ClapPop
+	$1A - SOUND_CastleBomb
+	$1B - SOUND_CastleFuse
+	$1C - SOUND_SwitchPalaceEject
+	$1D - SOUND_TimeRunningLow2
+	$1E - SOUND_Whistle
+	$1F - SOUND_Yoshi
+	$20 - SOUND_KoopalingHitsLava
+	$21 - SOUND_YoshiTongue
+	$22 - SOUND_MessageBox
+	$23 - SOUND_MoveOnOW
+	$24 - SOUND_PSwitchTimeLow
+	$25 - SOUND_YoshiEnemyStomp
+	$26 - SOUND_Swooper
+	$27 - SOUND_Podoboo
+	$28 - SOUND_EnemyStunned
+	$29 - SOUND_Correct
+	$2A - SOUND_Incorrect
+	$2B - SOUND_FireworkWhistle
+	$2C - SOUND_FireworkBang
+	$2D - SOUND_PodobooMinus100
+	$2E - SOUND_PodobooMinus71
+	$2F - SOUND_PodobooMinus43
+	$30 - SOUND_PodobooMinus14
+	$31 - SOUND_PodobooPlus14
+	$32 - SOUND_PodobooPlus43
+	$33 - SOUND_PodobooPlus71
+	$34 - SOUND_PodobooPlus100

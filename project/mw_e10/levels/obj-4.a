@@ -1,0 +1,15 @@
+.INCDIR "levels/data"
+
+LEVEL_L1_GhostHouseEntrance:	.INCBIN "other/ghost_house_ent/obj.lv"
+LEVEL_L1_BlankEntrance:			.INCBIN "other/blank_ent/obj.lv"
+LEVEL_L1_CastleEntrance:		.INCBIN "other/castle_ent-1/obj.lv"
+LEVEL_L1_104:					.INCBIN "world_1/yoshis_house/obj.lv"
+LEVEL_L1_NoYoshiEntrance1:		.INCBIN "unused/no_yoshi_ent-1/obj.lv"
+								.INCBIN "unused/ghost_house_exit-2/obj.lv"
+								.INCBIN "unused/test_bush/obj.lv"
+LEVEL_L1_CastleEntrance2:		.INCBIN "other/castle_ent-2/obj.lv"
+LEVEL_L1_NoYoshiEntrance2:		.INCBIN "unused/no_yoshi_ent-2/obj.lv"
+LEVEL_L1_NoYoshiEntrance3:		.INCBIN "unused/no_yoshi_ent-3/obj.lv"
+LEVEL_L1_108:					.INCBIN "unused/test_slope/obj.lv"
+
+.INCDIR ""

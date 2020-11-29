@@ -1,0 +1,828 @@
+DATA_00BA60:
+.REPEAT 16 INDEX COUNT
+	.DB <(wm_Map16SetL+$01B0*COUNT)
+.ENDR
+
+DATA_00BA70:
+.REPEAT 16 INDEX COUNT
+	.DB <(wm_Map16SetL+$01B0*(COUNT+16))
+.ENDR
+
+DATA_00BA80:
+.REPEAT 14 INDEX COUNT
+	.DB <(wm_Map16PageL+$0200*COUNT)
+.ENDR
+
+DATA_00BA8E:
+.REPEAT 14 INDEX COUNT
+	.DB <(wm_Map16PageL+$0200*(COUNT+14))
+.ENDR
+
+DATA_00BA9C:
+.REPEAT 16 INDEX COUNT
+	.DB >(wm_Map16SetL+$01B0*COUNT)
+.ENDR
+
+DATA_00BAAC:
+.REPEAT 16 INDEX COUNT
+	.DB >(wm_Map16SetL+$01B0*(COUNT+16))
+.ENDR
+
+DATA_00BABC:
+.REPEAT 14 INDEX COUNT
+	.DB >(wm_Map16PageL+$0200*COUNT)
+.ENDR
+
+DATA_00BACA:
+.REPEAT 14 INDEX COUNT
+	.DB >(wm_Map16PageL+$0200*(COUNT+14))
+.ENDR
+
+DATA_00BAD8:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetL+$01B0*COUNT
+.ENDR
+
+DATA_00BB08:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetL+$01B0*(COUNT+16)
+.ENDR
+
+DATA_00BB38:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageL+$0200*COUNT
+.ENDR
+
+DATA_00BB62:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetL+$01B0*(COUNT+16)
+.ENDR
+
+DATA_00BB92:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetL+$01B0*COUNT
+.ENDR
+
+DATA_00BBC2:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageL+$0200*(COUNT+14)
+.ENDR
+
+DATA_00BBEC:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageL+$0200*COUNT
+.ENDR
+
+DATA_00BC16:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageL+$0200*(COUNT+14)
+.ENDR
+
+DATA_00BC40:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetH+$01B0*COUNT
+.ENDR
+
+DATA_00BC70:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetH+$01B0*(COUNT+16)
+.ENDR
+
+DATA_00BCA0:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageH+$0200*COUNT
+.ENDR
+
+DATA_00BCCA:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetH+$01B0*(COUNT+16)
+.ENDR
+
+DATA_00BCFA:
+.REPEAT 16 INDEX COUNT
+	.DL wm_Map16SetH+$01B0*COUNT
+.ENDR
+
+DATA_00BD2A:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageH+$0200*(COUNT+14)
+.ENDR
+
+DATA_00BD54:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageH+$0200*COUNT
+.ENDR
+
+DATA_00BD7E:
+.REPEAT 14 INDEX COUNT
+	.DL wm_Map16PageH+$0200*(COUNT+14)
+.ENDR
+
+PtrsGenTileB:
+
+Ptrs00BDA8:
+	.DW DATA_00BAD8,DATA_00BAD8,DATA_00BAD8,DATA_00BB38,DATA_00BB38,DATA_00BB92,DATA_00BB92,DATA_00BBEC
+	.DW DATA_00BBEC,$0000,DATA_00BBEC,$0000,DATA_00BAD8,DATA_00BBEC,DATA_00BAD8,DATA_00BAD8
+	.DW $0000,DATA_00BAD8,$0000,$0000,$0000,$0000,$0000,$0000
+	.DW $0000,$0000,$0000,$0000,$0000,$0000,DATA_00BAD8,DATA_00BAD8
+
+Ptrs00BDE8:
+	.DW DATA_00BB08,DATA_00BB08,DATA_00BB08,DATA_00BB62,DATA_00BB62,DATA_00BBC2,DATA_00BBC2,DATA_00BC16
+	.DW DATA_00BC16,$0000,DATA_00BC16,$0000,DATA_00BB08,DATA_00BC16,DATA_00BB08,DATA_00BB08
+	.DW $0000,DATA_00BB08,$0000,$0000,$0000,$0000,$0000,$0000
+	.DW $0000,$0000,$0000,$0000,$0000,$0000,DATA_00BB08,DATA_00BB08
+
+Ptrs00BE28:
+	.DW DATA_00BC40,DATA_00BC40,DATA_00BC40,DATA_00BCA0,DATA_00BCA0,DATA_00BCFA,DATA_00BCFA,DATA_00BD54
+	.DW DATA_00BD54,$0000,DATA_00BD54,$0000,DATA_00BC40,DATA_00BD54,DATA_00BC40,DATA_00BC40
+	.DW $0000,DATA_00BC40,$0000,$0000,$0000,$0000,$0000,$0000
+	.DW $0000,$0000,$0000,$0000,$0000,$0000,DATA_00BC40,DATA_00BC40
+
+Ptrs00BE68:
+	.DW DATA_00BC70,DATA_00BC70,DATA_00BC70,DATA_00BCCA,DATA_00BCCA,DATA_00BD2A,DATA_00BD2A,DATA_00BD7E
+	.DW DATA_00BD7E,$0000,DATA_00BD7E,$0000,DATA_00BC70,DATA_00BD7E,DATA_00BC70,DATA_00BC70
+	.DW $0000,DATA_00BC70,$0000,$0000,$0000,$0000,$0000,$0000
+	.DW $0000,$0000,$0000,$0000,$0000,$0000,DATA_00BC70,DATA_00BC70
+
+LoadBlkPtrs:
+	.DW Ptrs00BDA8
+	.DW Ptrs00BDE8
+
+LoadBlkTable2:
+	.DW Ptrs00BE28
+	.DW Ptrs00BE68
+
+GenerateTile:
+	PHP
+	REP #$30
+	PHX
+	LDA wm_BlockId
+	AND #$00FF
+	BNE CODE_00BEBE
+_00BEBB:
+	JMP _00BFB9
+
+CODE_00BEBE:
+	LDA wm_BlockYPos
+	STA m12
+	LDA wm_BlockXPos
+	STA m14
+	LDA #$0000
+	SEP #$20
+	LDA wm_IsVerticalLvl
+	STA m9
+	LDA wm_LayerInProcess
+	BEQ +
+	LSR m9
++	LDY m14
+	LDA m9
+	AND #$01
+	BEQ +
+	LDA wm_BlockYPos+1
+	STA m0
+	LDA wm_BlockXPos+1
+	STA wm_BlockYPos+1
+	LDA m0
+	STA wm_BlockXPos+1
+	LDY m12
++	CPY #$0200
+	BCS _00BEBB
+	LDA wm_LayerInProcess
+	ASL
+	TAX
+	LDA.L LoadBlkPtrs,X
+	STA wm_Bg1Ptr
+	LDA.L LoadBlkPtrs+1,X
+	STA wm_Bg1Ptr+1
+	STZ wm_Bg1Ptr+2 ; #BANK_0
+	LDA wm_LevelHeaderMode
+	ASL
+	TAY
+	LDA [wm_Bg1Ptr],Y
+	STA m4
+	INY
+	LDA [wm_Bg1Ptr],Y
+	STA m5
+	STZ m6 ; #BANK_0
+	LDA wm_BlockYPos+1
+	STA m7
+	ASL
+	CLC
+	ADC m7
+	TAY
+	LDA [m4],Y
+	STA wm_Map16BlkPtrL
+	STA wm_Map16BlkPtrH
+	INY
+	LDA [m4],Y
+	STA wm_Map16BlkPtrL+1
+	STA wm_Map16BlkPtrH+1
+	LDA #$7E
+	STA wm_Map16BlkPtrL+2
+	INC A
+	STA wm_Map16BlkPtrH+2
+	LDA m9
+	AND #$01
+	BEQ CODE_00BF41
+	LDA wm_BlockXPos+1
+	LSR
+	LDA wm_BlockYPos+1
+	AND #$01
+	JMP _00BF46
+
+CODE_00BF41:
+	LDA wm_BlockYPos+1
+	LSR
+	LDA wm_BlockXPos+1
+_00BF46:
+	ROL
+	ASL
+	ASL
+	ORA #$20
+	STA m4
+	CPX #$0000
+	BEQ +
+	CLC
+	ADC #$10
+	STA m4
++	LDA wm_BlockXPos
+	AND #$F0
+	CLC
+	ASL
+	ROL
+	STA m5
+	ROL
+	AND #$03
+	ORA m4
+	STA m6
+	LDA wm_BlockYPos
+	AND #$F0
+	LSR
+	LSR
+	LSR
+	STA m4
+	LDA m5
+	AND #$C0
+	ORA m4
+	STA m7
+	REP #$20
+	LDA m9
+	AND #$0001
+	BNE CODE_00BF9B
+	LDA wm_Bg1HOfs
+	SEC
+	SBC #$0080
+	TAX
+	LDY wm_Bg1VOfs
+	LDA wm_LayerInProcess
+	BEQ _00BFB2
+	LDX wm_Bg2HOfs
+	LDA wm_Bg2VOfs
+	SEC
+	SBC #$0080
+	TAY
+	JMP _00BFB2
+
+CODE_00BF9B:
+	LDX wm_Bg1HOfs
+	LDA wm_Bg1VOfs
+	SEC
+	SBC #$0080
+	TAY
+	LDA wm_LayerInProcess
+	BEQ _00BFB2
+	LDA wm_Bg2HOfs
+	SEC
+	SBC #$0080
+	TAX
+	LDY wm_Bg2VOfs
+_00BFB2:
+	STX m8
+	STY m10
+	JSR CODE_00BFBC
+_00BFB9:
+	PLX
+	PLP
+	RTL
+
+CODE_00BFBC:
+	SEP #$30
+	LDA wm_BlockId
+	DEC A
+	PHK
+	PER.W m3
+	JML ExecutePtr
+
+TileGenerationPtr:
+	.DW CODE_00C074
+	.DW _00C077
+	.DW _00C077
+	.DW _00C077
+	.DW _00C077
+	.DW _00C077
+	.DW _00C077
+	.DW _00C077
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW _00C0C4
+	.DW CODE_00C0C1
+	.DW CODE_00C0C1
+	.DW CODE_00C1AC
+	.DW CODE_00C334
+	.DW CODE_00C334
+	.DW CODE_00C3D1
+
+DATA_00BFFF:	.DB $00,$00,$80,$00,$00,$01
+
+DATA_00C005:	.DB $80,$40,$20,$10,$08,$04,$02,$01
+
+CODE_00C00D:
+	REP #$30
+	LDA wm_BlockYPos
+	AND #$FF00
+	LSR
+	LSR
+	LSR
+	LSR
+	LSR
+	LSR
+	STA m4
+	LDA wm_BlockYPos
+	AND #$0080
+	LSR
+	LSR
+	LSR
+	LSR
+	LSR
+	LSR
+	LSR
+	ORA m4
+	STA m4
+	LDA wm_BlockXPos
+	AND #$0100
+	BEQ +
+	LDA m4
+	ORA #$0002
+	STA m4
++	LDA wm_ItemMemHead
+	AND #$000F
+	ASL
+	TAX
+	LDA.L DATA_00BFFF,X
+	CLC
+	ADC m4
+	STA m4
+	TAY
+	LDA wm_BlockYPos
+	AND #$0070
+	LSR
+	LSR
+	LSR
+	LSR
+	TAX
+	SEP #$20
+	LDA wm_ItemsCollected,Y
+	ORA.L DATA_00C005,X
+	STA wm_ItemsCollected,Y
+	RTS
+
+DATA_00C063:	.DB $7F,$BF,$DF,$EF,$F7,$FB,$FD,$FE
+
+TileToGeneratePg0:
+	.DB $25,$25,$25,$06,$49,$48,$2B,$A2
+	.DB $C6
+
+CODE_00C074:
+	JSR CODE_00C00D
+_00C077:
+	REP #$30
+	LDA wm_BlockXPos
+	AND #$01F0
+	STA m4
+	LDA wm_BlockYPos
+	LSR
+	LSR
+	LSR
+	LSR
+	AND #$000F
+	ORA m4
+	TAY
+	LDA wm_BlockId
+	AND #$00FF
+	TAX
+	SEP #$20
+	LDA [wm_Map16BlkPtrH],Y
+	AND #$FE
+	STA [wm_Map16BlkPtrH],Y
+	LDA.L TileToGeneratePg0,X
+	STA [wm_Map16BlkPtrL],Y
+	REP #$20
+	AND #$00FF
+	ASL
+	TAY
+	JMP _00C0FB
+
+DATA_00C0AA:	.DB $80,$40,$20,$10,$08,$04,$02,$01
+
+TileToGeneratePg1:
+	.DB $52,$1B,$23,$1E,$32,$13,$15,$16
+	.DB $2B,$2C,$12,$68,$69,$32,$5E
+
+CODE_00C0C1:
+	JSR CODE_00C00D
+_00C0C4:
+	REP #$30
+	LDA wm_BlockXPos
+	AND #$01F0
+	STA m4
+	LDA wm_BlockYPos
+	LSR
+	LSR
+	LSR
+	LSR
+	AND #$000F
+	ORA m4
+	TAY
+	LDA wm_BlockId
+	SEC
+	SBC #$0009
+	AND #$00FF
+	TAX
+	SEP #$20
+	LDA [wm_Map16BlkPtrH],Y
+	ORA #$01
+	STA [wm_Map16BlkPtrH],Y
+	LDA.L TileToGeneratePg1,X
+	STA [wm_Map16BlkPtrL],Y
+	REP #$20
+	AND #$00FF
+	ORA #$0100
+	ASL
+	TAY
+_00C0FB:
+	LDA wm_IsVerticalLvl
+	STA m0
+	LDA wm_LayerInProcess
+	BEQ +
+	LSR m0
++	LDA m0
+	AND #$0001
+	BNE CODE_00C127
+	LDA m8
+	AND #$FFF0
+	BMI +
+	CMP m12
+	BEQ _00C13E
+	BCS ++
++	CLC
+	ADC #$0200
+	CMP m12
+	BEQ ++
+	BCS _00C13E
+++	JMP _Return00C1AB
+
+CODE_00C127:
+	LDA m10
+	AND #$FFF0
+	BMI +
+	CMP m14
+	BEQ _00C13E
+	BCS _Return00C1AB
++	CLC
+	ADC #$0200
+	CMP m14
+	BEQ _Return00C1AB
+	BCC _Return00C1AB
+_00C13E:
+	LDA wm_ImageIndex
+	TAX
+	SEP #$20
+	LDA m6
+	STA wm_ImageTable,X
+	STA wm_ImageTable.5.ImgL,X
+	LDA m7
+	STA wm_ImageTable.1.ImgH,X
+	CLC
+	ADC #$20
+	STA wm_ImageTable.5.ImgH,X
+	LDA #$00
+	STA wm_ImageTable.2.ImgL,X
+	STA wm_ImageTable.6.ImgL,X
+	LDA #$03
+	STA wm_ImageTable.2.ImgH,X
+	STA wm_ImageTable.6.ImgH,X
+	LDA #$FF
+	STA wm_ImageTable.9.ImgL,X
+	LDA #:Map16TilesBank
+	STA m6
+	REP #$20
+	LDA wm_Map16TilePtrs,Y
+	STA m4
+	LDY #$0000
+	LDA [m4],Y
+	STA wm_ImageTable.3.ImgL,X
+	INY
+	INY
+	LDA [m4],Y
+	STA wm_ImageTable.7.ImgL,X
+	INY
+	INY
+	LDA [m4],Y
+	STA wm_ImageTable.4.ImgL,X
+	INY
+	INY
+	LDA [m4],Y
+	STA wm_ImageTable.8.ImgL,X
+	TXA
+	CLC
+	ADC #$0010
+	STA wm_ImageIndex
+_Return00C1AB:
+	RTS
+
+CODE_00C1AC:
+	JSR CODE_00C00D
+	REP #$30
+	LDA wm_BlockXPos
+	AND #$01F0
+	STA m4
+	LDA wm_BlockYPos
+	LSR
+	LSR
+	LSR
+	LSR
+	AND #$000F
+	ORA m4
+	TAY
+	SEP #$20
+	LDA #$25
+	STA [wm_Map16BlkPtrL],Y
+	REP #$20
+	TYA
+	CLC
+	ADC #$0010
+	TAY
+	SEP #$20
+	LDA #$25
+	STA [wm_Map16BlkPtrL],Y
+	REP #$20
+	AND #$00FF
+	ASL
+	TAY
+	LDA wm_IsVerticalLvl
+	STA m0
+	LDA wm_LayerInProcess
+	BEQ +
+	LSR m0
++	LDA m0
+	AND #$0001
+	BNE CODE_00C20B
+	LDA m8
+	AND #$FFF0
+	BMI +
+	CMP m12
+	BEQ _00C222
+	BCS _Return00C1AB
++	CLC
+	ADC #$0200
+	CMP m12
+	BCC _Return00C1AB
+	BEQ _Return00C1AB
+	JMP _00C222
+
+CODE_00C20B:
+	LDA m10
+	AND #$FFF0
+	BMI +
+	CMP m14
+	BEQ _00C222
+	BCS _Return00C1AB
++	CLC
+	ADC #$0200
+	CMP m14
+	BEQ _Return00C1AB
+	BCC _Return00C1AB
+_00C222:
+	LDA wm_ImageIndex
+	TAX
+	SEP #$20
+	LDA m6
+	STA wm_ImageTable,X
+	STA wm_ImageTable.7.ImgL,X
+	LDA m7
+	STA wm_ImageTable.1.ImgH,X
+	INC A
+	STA wm_ImageTable.7.ImgH,X
+	LDA #$80
+	STA wm_ImageTable.2.ImgL,X
+	STA wm_ImageTable.8.ImgL,X
+	LDA #$07
+	STA wm_ImageTable.2.ImgH,X
+	STA wm_ImageTable.8.ImgH,X
+	LDA #$FF
+	STA wm_ImageTable.13.ImgL,X
+	LDA #:Map16TilesBank
+	STA m6
+	REP #$20
+	LDA wm_Map16TilePtrs,Y
+	STA m4
+	LDY #$0000
+	LDA [m4],Y
+	STA wm_ImageTable.3.ImgL,X
+	STA wm_ImageTable.5.ImgL,X
+	INY
+	INY
+	LDA [m4],Y
+	STA wm_ImageTable.9.ImgL,X
+	STA wm_ImageTable.11.ImgL,X
+	INY
+	INY
+	LDA [m4],Y
+	STA wm_ImageTable.4.ImgL,X
+	STA wm_ImageTable.6.ImgL,X
+	INY
+	INY
+	LDA [m4],Y
+	STA wm_ImageTable.10.ImgL,X
+	STA wm_ImageTable.12.ImgL,X
+	TXA
+	CLC
+	ADC #$0018
+	STA wm_ImageIndex
+	RTS
+
+FlippedGateBgTiles1:
+	.DB $99,$9C,$8B,$1C,$8B,$1C,$8B,$1C
+	.DB $8B,$1C,$99,$DC,$9B,$1C,$F8,$1C
+	.DB $F8,$1C,$F8,$1C,$F8,$1C,$9B,$5C
+	.DB $9B,$1C,$F8,$1C,$F8,$1C,$F8,$1C
+	.DB $F8,$1C,$9B,$5C,$9B,$1C,$F8,$1C
+	.DB $F8,$1C,$F8,$1C,$F8,$1C,$9B,$5C
+	.DB $9B,$1C,$F8,$1C,$F8,$1C,$F8,$1C
+	.DB $F8,$1C,$9B,$5C,$99,$1C,$8B,$9C
+	.DB $8B,$9C,$8B,$9C,$8B,$9C,$99,$5C
+
+FlippedGateBgTiles2:
+	.DB $BA,$9C,$AB,$1C,$AB,$1C,$AB,$1C
+	.DB $AB,$1C,$BA,$DC,$AA,$1C,$82,$1C
+	.DB $82,$1C,$82,$1C,$82,$1C,$AA,$5C
+	.DB $AA,$1C,$82,$1C,$82,$1C,$82,$1C
+	.DB $82,$1C,$AA,$5C,$AA,$1C,$82,$1C
+	.DB $82,$1C,$82,$1C,$82,$1C,$AA,$5C
+	.DB $AA,$1C,$82,$1C,$82,$1C,$82,$1C
+	.DB $82,$1C,$AA,$5C,$BA,$1C,$AB,$9C
+	.DB $AB,$9C,$AB,$9C,$AB,$9C,$BA,$5C
+
+DATA_00C32E:	.DL FlippedGateBgTiles1
+
+DATA_00C330:	.DL FlippedGateBgTiles2
+
+CODE_00C334:
+	INC m7
+	LDA m7
+	CLC
+	ADC.B #$20
+	STA m7
+	LDA m6
+	ADC.B #$00
+	STA m6
+	LDA wm_BlockId
+	SEC
+	SBC.B #$19
+	STA m0
+	ASL
+	CLC
+	ADC m0
+	TAX
+	LDA.L DATA_00C330-1,X
+	STA m4
+	REP #$30
+	LDA.L DATA_00C32E,X
+	STA m2
+	LDA wm_ImageIndex
+	TAX
+	LDY #$0005
+-	SEP #$20
+	LDA m6
+	STA wm_ImageTable,X
+	LDA m7
+	STA wm_ImageTable.1.ImgH,X
+	LDA #$00
+	STA wm_ImageTable.2.ImgL,X
+	LDA #$0B
+	STA wm_ImageTable.2.ImgH,X
+	LDA m7
+	CLC
+	ADC #$20
+	STA m7
+	LDA m6
+	ADC #$00
+	STA m6
+	REP #$20
+	TXA
+	CLC
+	ADC #$0010
+	TAX
+	DEY
+	BPL -
+	LDA wm_ImageIndex
+	TAX
+	LDY #$0000
+-	LDA #$0005
+	STA m0
+--	LDA [m2],Y
+	STA wm_ImageTable.3.ImgL,X
+	INY
+	INY
+	INX
+	INX
+	DEC m0
+	BPL --
+	TXA
+	CLC
+	ADC #$0004
+	TAX
+	CPY #$0048
+	BNE -
+	LDA #$00FF
+	STA wm_ImageTable,X
+	LDA wm_ImageIndex
+	CLC
+	ADC #$0060
+	STA wm_ImageIndex
+	RTS
+
+CODE_00C3D1:
+	REP #$30
+	LDA wm_BlockXPos
+	AND #$01F0
+	STA m4
+	LDA wm_BlockYPos
+	LSR
+	LSR
+	LSR
+	LSR
+	AND #$000F
+	ORA m4
+	TAY
+	LDA wm_ImageIndex
+	TAX
+	SEP #$20
+	LDA #$25
+	STA [wm_Map16BlkPtrL],Y
+	INY
+	LDA #$25
+	STA [wm_Map16BlkPtrL],Y
+	REP #$20
+	TYA
+	CLC
+	ADC #$0010
+	TAY
+	SEP #$20
+	LDA #$25
+	STA [wm_Map16BlkPtrL],Y
+	DEY
+	LDA #$25
+	STA [wm_Map16BlkPtrL],Y
+	LDY #$0003
+-	LDA m6
+	STA wm_ImageTable,X
+	LDA m7
+	STA wm_ImageTable.1.ImgH,X
+	LDA #$40
+	STA wm_ImageTable.2.ImgL,X
+	LDA #$06
+	STA wm_ImageTable.2.ImgH,X
+	REP #$20
+	LDA #$18F8
+	STA wm_ImageTable.3.ImgL,X
+	TXA
+	CLC
+	ADC #$0006
+	TAX
+	SEP #$20
+	LDA m7
+	CLC
+	ADC #$20
+	STA m7
+	LDA m6
+	ADC #$00
+	STA m6
+	DEY
+	BPL -
+	LDA #$FF
+	STA wm_ImageTable,X
+	REP #$20
+	TXA
+	STA wm_ImageIndex
+	RTS

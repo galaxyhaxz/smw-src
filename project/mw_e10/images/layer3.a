@@ -1,0 +1,28 @@
+Layer3Ptr:
+	.DL @Water,@Water,@Cage			; Tileset 0
+	.DL @Water,@Smasher,@Windows	; Tileset 1
+	.DL @Water,@Water,@Cage			; Tileset 2
+	.DL @Water,@Water,@Cave			; Tileset 3
+	.DL @Water,@Water,@Cage			; Tileset 4
+	.DL @Water,@Water,@Fog			; Tileset 5
+	.DL @Water,@Water,@Cage			; Tileset 6
+	.DL @Water,@Water,@Cage			; Tileset 7
+	.DL @Water,@Water,@Cage			; Tileset 8
+	.DL @Water,@Water,@Fish			; Tileset 9
+	.DL @Water,@Water,@Cage			; Tileset A
+	.DL @Water,@Water,@Cage			; Tileset B
+	.DL @Water,@Water,@Cage			; Tileset C
+	.DL @Water,@Water,@Fog			; Tileset D
+	.DL @Water,@Water,@Cave			; Tileset E
+
+.INCDIR "images/levels/layer3"
+
+@Cage:		.INCBIN "cage.stim"
+@Smasher:	.INCBIN "smasher.stim"
+@Water:		.INCBIN "water.stim"
+@Fog:		.INCBIN "fog.stim"
+@Fish:		.INCBIN "fish.stim"
+@Windows:	.INCBIN "windows.stim"
+@Cave:		.INCBIN "cave.stim"
+
+.INCDIR ""
